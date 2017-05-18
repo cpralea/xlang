@@ -1,0 +1,57 @@
+[Debug]: Configuration:
+[Debug]:   (Configuration:
+[Debug]:     Options: '(
+[Debug]:       'no-output:true',
+[Debug]:       'output:tests/xl/str_escseq_valid.ll',
+[Debug]:       'verbose:true')',
+[Debug]:     File: 'tests/xl/str_escseq_valid.xl')
+[Debug]: Parsed tokens:
+[Debug]:   (Token: Value: 'print', Print@1,1)
+[Debug]:   (Token: Value: 'Name:\tJoe,\r\nAge:\t30', String@1,7)
+[Debug]:   (Token: Value: '\n', Separator@1,32)
+[Debug]:   (Token: Value: 'print', Print@2,1)
+[Debug]:   (Token: Value: 'Hello \"Joe\"!', String@2,7)
+[Debug]:   (Token: Value: '\n', Separator@2,23)
+[Debug]: Parsed program:
+[Debug]:   (Node: Program, @N/A
+[Debug]:     Statements:
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@1,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: 'Name:\tJoe,\r\nAge:\t30', String@1,7)
+[Debug]:             Identifier: N/A
+[Debug]:             Integer: N/A
+[Debug]:             String: Name:\tJoe,\r\nAge:\t30))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@2,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: 'Hello \"Joe\"!', String@2,7)
+[Debug]:             Identifier: N/A
+[Debug]:             Integer: N/A
+[Debug]:             String: Hello \"Joe\"!)))
+[Debug]: Compiler data:
+[Debug]:   Parent:
+[Debug]:     (Node: Program, @N/A)
+[Debug]:   Execution steps:
+[Debug]:     (Node: Expression, @(Token: Value: 'Name:\tJoe,\r\nAge:\t30', String@1,7)): Str
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@1,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: 'Hello \"Joe\"!', String@2,7)): Str
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@2,1)): Nil
+[Debug]: Code:
+[Debug]:   ; String literals.
+[Debug]:   @0 = private unnamed_addr constant [20 x i8] c"Name:\09Joe,\0D\0AAge:\0930\00", align 1
+[Debug]:   @1 = private unnamed_addr constant [13 x i8] c"Hello \22Joe\22!\00", align 1
+[Debug]:   
+[Debug]:   ; Program entry point.
+[Debug]:   define i32 @main() {
+[Debug]:   entry:
+[Debug]:     ; Variables.
+[Debug]:     ; Statements.
+[Debug]:     call void @__xlrt_print_str(i8* getelementptr inbounds ([20 x i8], [20 x i8]* @0, i64 0, i64 0))
+[Debug]:     call void @__xlrt_print_str(i8* getelementptr inbounds ([13 x i8], [13 x i8]* @1, i64 0, i64 0))
+[Debug]:     ; Return.
+[Debug]:     ret i32 0
+[Debug]:   }
+[Debug]:   
+[Debug]:   ; X language runtime symbols.
+[Debug]:   declare void @__xlrt_print_int(i64)
+[Debug]:   declare void @__xlrt_print_str(i8*)
+[Debug]:   

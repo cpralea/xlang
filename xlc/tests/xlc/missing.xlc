@@ -1,0 +1,8 @@
+[Debug]: Configuration:
+[Debug]:   (Configuration:
+[Debug]:     Options: '(
+[Debug]:       'no-output:true',
+[Debug]:       'output:tests/xl/missing.ll',
+[Debug]:       'verbose:true')',
+[Debug]:     File: 'tests/xl/missing.xl')
+[Error]: Could not read source file 'tests/xl/missing.xl'.

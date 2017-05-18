@@ -1,0 +1,34 @@
+[Debug]: Configuration:
+[Debug]:   (Configuration:
+[Debug]:     Options: '(
+[Debug]:       'no-output:true',
+[Debug]:       'output:tests/xl/empty.ll',
+[Debug]:       'verbose:true')',
+[Debug]:     File: 'tests/xl/empty.xl')
+[Debug]: Parsed tokens:
+[Debug]:   N/A
+[Debug]: Parsed program:
+[Debug]:   (Node: Program, @N/A
+[Debug]:     Statements:
+[Debug]:       N/A)
+[Debug]: Compiler data:
+[Debug]:   Parent:
+[Debug]:     (Node: Program, @N/A)
+[Debug]:   Execution steps:
+[Debug]:     N/A
+[Debug]: Code:
+[Debug]:   ; String literals.
+[Debug]:   
+[Debug]:   ; Program entry point.
+[Debug]:   define i32 @main() {
+[Debug]:   entry:
+[Debug]:     ; Variables.
+[Debug]:     ; Statements.
+[Debug]:     ; Return.
+[Debug]:     ret i32 0
+[Debug]:   }
+[Debug]:   
+[Debug]:   ; X language runtime symbols.
+[Debug]:   declare void @__xlrt_print_int(i64)
+[Debug]:   declare void @__xlrt_print_str(i8*)
+[Debug]:   

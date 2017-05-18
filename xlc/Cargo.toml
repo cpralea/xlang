@@ -1,0 +1,14 @@
+[package]
+name = "xlc"
+version = "0.1.0"
+authors = ["Constantin Pralea <constantin.pralea@gmail.com>"]
+
+[dependencies]
+argparse = "0.2"
+itertools = "0.6"
+maplit = "0.1"
+ref_eq = "1.0"
+
+[[bin]]
+name = "xlc"
+test = false

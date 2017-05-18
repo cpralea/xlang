@@ -1,0 +1,10 @@
+[package]
+name = "xlrt"
+version = "0.1.0"
+authors = ["Constantin Pralea <constantin.pralea@gmail.com>"]
+
+[lib]
+name = "xlrt"
+crate-type = ["cdylib"]
+
+[dependencies]

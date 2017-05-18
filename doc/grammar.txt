@@ -1,0 +1,15 @@
+# Tokens
+whitespace      = [ \r\t]
+separator       = \n
+identifier      = [_a-zA-Z][_a-zA-Z0-9]*
+integer         = 0 | [1-9][0-9]*
+string          = ".*"
+kw:print        = print
+op:assignment   = =
+
+# Grammar
+program         = statement*
+statement       = assignment | print
+assignment      = identifier op:assignment expression
+print           = kw:print expression
+expression      = identifier | integer | string

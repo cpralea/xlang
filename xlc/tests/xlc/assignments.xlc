@@ -1,0 +1,62 @@
+[Debug]: Configuration:
+[Debug]:   (Configuration:
+[Debug]:     Options: '(
+[Debug]:       'no-output:true',
+[Debug]:       'output:tests/xl/assignments.ll',
+[Debug]:       'verbose:true')',
+[Debug]:     File: 'tests/xl/assignments.xl')
+[Debug]: Parsed tokens:
+[Debug]:   (Token: Value: 'x', Identifier@1,1)
+[Debug]:   (Token: Value: '=', Assign@1,3)
+[Debug]:   (Token: Value: '0', Integer@1,5)
+[Debug]:   (Token: Value: '\n', Separator@1,6)
+[Debug]:   (Token: Value: 'y', Identifier@2,1)
+[Debug]:   (Token: Value: '=', Assign@2,3)
+[Debug]:   (Token: Value: 'hello', String@2,5)
+[Debug]:   (Token: Value: '\n', Separator@2,12)
+[Debug]: Parsed program:
+[Debug]:   (Node: Program, @N/A
+[Debug]:     Statements:
+[Debug]:       (Node: Assignment, @(Token: Value: 'x', Identifier@1,1)
+[Debug]:         Identifier: x
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '0', Integer@1,5)
+[Debug]:             Identifier: N/A
+[Debug]:             Integer: 0
+[Debug]:             String: N/A))
+[Debug]:       (Node: Assignment, @(Token: Value: 'y', Identifier@2,1)
+[Debug]:         Identifier: y
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: 'hello', String@2,5)
+[Debug]:             Identifier: N/A
+[Debug]:             Integer: N/A
+[Debug]:             String: hello)))
+[Debug]: Compiler data:
+[Debug]:   Parent:
+[Debug]:     (Node: Program, @N/A)
+[Debug]:   Execution steps:
+[Debug]:     (Node: Expression, @(Token: Value: '0', Integer@1,5)): Int
+[Debug]:     (Node: Assignment, @(Token: Value: 'x', Identifier@1,1)): Int
+[Debug]:     (Node: Expression, @(Token: Value: 'hello', String@2,5)): Str
+[Debug]:     (Node: Assignment, @(Token: Value: 'y', Identifier@2,1)): Str
+[Debug]: Code:
+[Debug]:   ; String literals.
+[Debug]:   @0 = private unnamed_addr constant [6 x i8] c"hello\00", align 1
+[Debug]:   
+[Debug]:   ; Program entry point.
+[Debug]:   define i32 @main() {
+[Debug]:   entry:
+[Debug]:     ; Variables.
+[Debug]:     %x = alloca i64, align 8
+[Debug]:     %y = alloca i8*, align 8
+[Debug]:     ; Statements.
+[Debug]:     store i64 0, i64* %x, align 8
+[Debug]:     store i8* getelementptr inbounds ([6 x i8], [6 x i8]* @0, i64 0, i64 0), i8** %y, align 8
+[Debug]:     ; Return.
+[Debug]:     ret i32 0
+[Debug]:   }
+[Debug]:   
+[Debug]:   ; X language runtime symbols.
+[Debug]:   declare void @__xlrt_print_int(i64)
+[Debug]:   declare void @__xlrt_print_str(i8*)
+[Debug]:   
