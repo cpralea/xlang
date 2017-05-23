@@ -67,8 +67,9 @@ fn parse_keyword_or_identifier(source: &mut io::SourceFlexIterator) -> common::S
             _ => break,
         }}
     let kind = match value.as_str() {
-        "print" => ast::TokenKind::Print,
-        _       => ast::TokenKind::Identifier,
+        "true"|"false" => ast::TokenKind::Boolean,
+        "print"        => ast::TokenKind::Print,
+        _              => ast::TokenKind::Identifier,
     };
 
     let token = ast::Token { kind: kind, value: value, location: location };

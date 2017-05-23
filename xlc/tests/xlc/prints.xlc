@@ -12,21 +12,31 @@
 [Debug]:   (Token: Value: 'print', Print@2,1)
 [Debug]:   (Token: Value: 'hello', String@2,7)
 [Debug]:   (Token: Value: '\n', Separator@2,14)
+[Debug]:   (Token: Value: 'print', Print@3,1)
+[Debug]:   (Token: Value: 'true', Boolean@3,7)
+[Debug]:   (Token: Value: '\n', Separator@3,11)
+[Debug]:   (Token: Value: 'print', Print@4,1)
+[Debug]:   (Token: Value: 'false', Boolean@4,7)
+[Debug]:   (Token: Value: '\n', Separator@4,12)
 [Debug]: Parsed program:
 [Debug]:   (Node: Program, @N/A
 [Debug]:     Statements:
 [Debug]:       (Node: Print, @(Token: Value: 'print', Print@1,1)
 [Debug]:         Expression:
 [Debug]:           (Node: Expression, @(Token: Value: '0', Integer@1,7)
-[Debug]:             Identifier: N/A
-[Debug]:             Integer: 0
-[Debug]:             String: N/A))
+[Debug]:             Integer: 0))
 [Debug]:       (Node: Print, @(Token: Value: 'print', Print@2,1)
 [Debug]:         Expression:
 [Debug]:           (Node: Expression, @(Token: Value: 'hello', String@2,7)
-[Debug]:             Identifier: N/A
-[Debug]:             Integer: N/A
-[Debug]:             String: hello)))
+[Debug]:             String: hello))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@3,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: 'true', Boolean@3,7)
+[Debug]:             Boolean: true))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@4,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: 'false', Boolean@4,7)
+[Debug]:             Boolean: false)))
 [Debug]: Compiler data:
 [Debug]:   Parent:
 [Debug]:     (Node: Program, @N/A)
@@ -35,6 +45,10 @@
 [Debug]:     (Node: Print, @(Token: Value: 'print', Print@1,1)): Nil
 [Debug]:     (Node: Expression, @(Token: Value: 'hello', String@2,7)): Str
 [Debug]:     (Node: Print, @(Token: Value: 'print', Print@2,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: 'true', Boolean@3,7)): Bool
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@3,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: 'false', Boolean@4,7)): Bool
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@4,1)): Nil
 [Debug]: Code:
 [Debug]:   ; String literals.
 [Debug]:   @0 = private unnamed_addr constant [6 x i8] c"hello\00", align 1
@@ -46,11 +60,14 @@
 [Debug]:     ; Statements.
 [Debug]:     call void @__xlrt_print_int(i64 0)
 [Debug]:     call void @__xlrt_print_str(i8* getelementptr inbounds ([6 x i8], [6 x i8]* @0, i64 0, i64 0))
+[Debug]:     call void @__xlrt_print_bool(i8 1)
+[Debug]:     call void @__xlrt_print_bool(i8 0)
 [Debug]:     ; Return.
 [Debug]:     ret i32 0
 [Debug]:   }
 [Debug]:   
 [Debug]:   ; X language runtime symbols.
+[Debug]:   declare void @__xlrt_print_bool(i8)
 [Debug]:   declare void @__xlrt_print_int(i64)
 [Debug]:   declare void @__xlrt_print_str(i8*)
 [Debug]:   

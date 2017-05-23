@@ -17,9 +17,7 @@
 [Debug]:         Identifier: x
 [Debug]:         Expression:
 [Debug]:           (Node: Expression, @(Token: Value: 'y', Identifier@1,5)
-[Debug]:             Identifier: y
-[Debug]:             Integer: N/A
-[Debug]:             String: N/A)))
+[Debug]:             Identifier: y)))
 [Debug]: Compiler data:
 [Debug]:   Parent:
 [Debug]:     (Node: Program, @N/A)

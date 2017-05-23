@@ -4,6 +4,17 @@ use cxltypes;
 
 
 #[no_mangle]
+pub extern fn __xlrt_print_bool(value: cxltypes::c_xl_bool) {
+    let value = match value {
+        0 => "false",
+        1 => "true",
+        _ => unreachable!(),
+    };
+    println!("{}", value);
+}
+
+
+#[no_mangle]
 pub extern fn __xlrt_print_int(value: cxltypes::c_xl_int) {
     println!("{}", value);
 }

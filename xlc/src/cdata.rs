@@ -16,6 +16,7 @@ pub struct Step<'a> {
 
 #[derive(Debug, PartialEq, Copy, Clone)]
 pub enum StepKind {
+    Bool,
     Int,
     Nil,
     Str,

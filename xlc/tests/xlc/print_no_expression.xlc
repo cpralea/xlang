@@ -16,4 +16,4 @@
 [Debug]:           N/A))
 print
      ^
-[Error]: @1,6: Expected Identifier, Integer or String. Found End of Statement.
+[Error]: @1,6: Expected Identifier, Boolean, Integer or String. Found End of Statement.

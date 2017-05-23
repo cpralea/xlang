@@ -33,10 +33,12 @@ struct VarDeclaration<'a> {
     xl_id: &'a String,
 }
 enum Operand {
-    IntLit { value: String },
-    StrLit { value: String },
-    IntVar { ir_id: String },
-    StrVar { ir_id: String },
+    BoolLit { value: String },
+    IntLit  { value: String },
+    StrLit  { value: String },
+    BoolVar { ir_id: String },
+    IntVar  { ir_id: String },
+    StrVar  { ir_id: String },
 }
 
 
@@ -69,6 +71,7 @@ impl<'a> Emitter<'a> {
 
     fn emit_xlrt_declarations(&mut self) {
         Self::ir(&mut self.ir, 0, "; X language runtime symbols.");
+        Self::ir(&mut self.ir, 0, "declare void @__xlrt_print_bool(i8)");
         Self::ir(&mut self.ir, 0, "declare void @__xlrt_print_int(i64)");
         Self::ir(&mut self.ir, 0, "declare void @__xlrt_print_str(i8*)");
     }
@@ -112,10 +115,18 @@ impl<'a> Emitter<'a> {
         match *step.node.kind { ast::NodeKind::Print {..} => {
             assert!(self.stack.len() == 1);
             match self.stack.pop() {
-                Some(Operand::IntLit { ref value, .. }) => self.emit_print_intlit(value),
-                Some(Operand::IntVar { ref ir_id, .. }) => self.emit_print_intvar(ir_id),
-                Some(Operand::StrLit { ref value, .. }) => self.emit_print_strlit(value),
-                Some(Operand::StrVar { ref ir_id, .. }) => self.emit_print_strvar(ir_id),
+                Some(Operand::BoolLit { ref value, .. }) =>
+                    self.emit_print_boollit(value),
+                Some(Operand::BoolVar { ref ir_id, .. }) =>
+                    self.emit_print_boolvar(ir_id),
+                Some(Operand::IntLit { ref value, .. }) =>
+                    self.emit_print_intlit(value),
+                Some(Operand::IntVar { ref ir_id, .. }) =>
+                    self.emit_print_intvar(ir_id),
+                Some(Operand::StrLit { ref value, .. }) =>
+                    self.emit_print_strlit(value),
+                Some(Operand::StrVar { ref ir_id, .. }) =>
+                    self.emit_print_strvar(ir_id),
         _ => unreachable!(), }}, _ => unreachable!(), }
     }
 
@@ -124,11 +135,28 @@ impl<'a> Emitter<'a> {
             assert!(self.stack.len() == 1);
             let xl_id = identifier.as_ref().unwrap();
             match self.stack.pop() {
-                Some(Operand::IntLit { ref value, .. }) => self.emit_assignment_intlit(value, xl_id),
-                Some(Operand::IntVar { ref ir_id, .. }) => self.emit_assignment_intvar(ir_id, xl_id),
-                Some(Operand::StrLit { ref value, .. }) => self.emit_assignment_strlit(value, xl_id),
-                Some(Operand::StrVar { ref ir_id, .. }) => self.emit_assignment_strvar(ir_id, xl_id),
+                Some(Operand::BoolLit { ref value, .. }) =>
+                    self.emit_assignment_boollit(value, xl_id),
+                Some(Operand::BoolVar { ref ir_id, .. }) =>
+                    self.emit_assignment_boolvar(ir_id, xl_id),
+                Some(Operand::IntLit { ref value, .. }) =>
+                    self.emit_assignment_intlit(value, xl_id),
+                Some(Operand::IntVar { ref ir_id, .. }) =>
+                    self.emit_assignment_intvar(ir_id, xl_id),
+                Some(Operand::StrLit { ref value, .. }) =>
+                    self.emit_assignment_strlit(value, xl_id),
+                Some(Operand::StrVar { ref ir_id, .. }) =>
+                    self.emit_assignment_strvar(ir_id, xl_id),
         _ => unreachable!(), }}, _ => unreachable!(), }
+    }
+
+    fn emit_print_boollit(&mut self, ir_id: &String) {
+        self.emit_print_bool(ir_id);
+    }
+
+    fn emit_print_boolvar(&mut self, ir_id: &String) {
+        let ir_tmpid = &self.emit_load_booltmpid(ir_id);
+        self.emit_print_bool(ir_tmpid);
     }
 
     fn emit_print_intlit(&mut self, ir_id: &String) {
@@ -151,6 +179,15 @@ impl<'a> Emitter<'a> {
         self.emit_print_str(ir_tmpid);
     }
 
+    fn emit_assignment_boollit(&mut self, ir_srcid: &String, xl_dstid: &String) {
+        self.emit_assignment_bool(ir_srcid, xl_dstid);
+    }
+
+    fn emit_assignment_boolvar(&mut self, ir_srcid: &String, xl_dstid: &String) {
+        let ir_tmpid = &self.emit_load_booltmpid(ir_srcid);
+        self.emit_assignment_bool(ir_tmpid, xl_dstid);
+    }
+
     fn emit_assignment_intlit(&mut self, ir_srcid: &String, xl_dstid: &String) {
         self.emit_assignment_int(ir_srcid, xl_dstid);
     }
@@ -171,6 +208,12 @@ impl<'a> Emitter<'a> {
         self.emit_assignment_str(ir_tmpid, xl_dstid);
     }
 
+    fn emit_print_bool(&mut self, ir_id: &String) {
+        Self::ir(&mut self.ir, 1, format!(
+            "call void @__xlrt_print_bool(i8 {})"
+        , ir_id).as_str());
+    }
+
     fn emit_print_int(&mut self, ir_id: &String) {
         Self::ir(&mut self.ir, 1, format!(
             "call void @__xlrt_print_int(i64 {})"
@@ -181,6 +224,13 @@ impl<'a> Emitter<'a> {
         Self::ir(&mut self.ir, 1, format!(
             "call void @__xlrt_print_str(i8* {})"
         , ir_id).as_str());
+    }
+
+    fn emit_assignment_bool(&mut self, ir_srcid: &String, xl_dstvar: &String) {
+        let ir_dstid = Self::get_ir_id_by_xl_id(&self.var_decls, xl_dstvar);
+        Self::ir(&mut self.ir, 1, format!(
+            "store i8 {}, i8* {}, align 1"
+        , ir_srcid, ir_dstid).as_str());
     }
 
     fn emit_assignment_int(&mut self, ir_srcid: &String, xl_dstvar: &String) {
@@ -195,6 +245,14 @@ impl<'a> Emitter<'a> {
         Self::ir(&mut self.ir, 1, format!(
             "store i8* {}, i8** {}, align 8"
         , ir_srcid, ir_dstid).as_str());
+    }
+
+    fn emit_load_booltmpid(&mut self, ir_id: &String) -> String {
+        let ir_tmpid = format!("%{}", Self::get_next_id(&mut self.tmpvar_id));
+        Self::ir(&mut self.ir, 1, format!(
+            "{} = load i8, i8* {}, align 1"
+        , ir_tmpid, ir_id).as_str());
+        ir_tmpid
     }
 
     fn emit_load_inttmpid(&mut self, ir_id: &String) -> String {
@@ -232,8 +290,9 @@ impl<'a> Emitter<'a> {
                     if Self::find_var_decl_by_xl_id(&self.var_decls, xl_id).is_none() {
                         let ir_id = format!("%{}", xl_id);
                         let ir_type = String::from(match step.kind {
-                            cdata::StepKind::Int => "i64",
-                            cdata::StepKind::Str => "i8*",
+                            cdata::StepKind::Bool => "i8",
+                            cdata::StepKind::Int  => "i64",
+                            cdata::StepKind::Str  => "i8*",
                             _ => unreachable!(), });
                         self.var_decls.push(VarDeclaration::from(xl_id)
                             .with_id(ir_id).with_type(ir_type));
@@ -241,13 +300,18 @@ impl<'a> Emitter<'a> {
     }
 
     fn push_expression(&mut self, step: &'a cdata::Step<'a>) { match *step.node.kind {
-        ast::NodeKind::Expression { ref identifier, ref integer, ref string } => {
-            let (xl_id, xl_intval, xl_strval) = (identifier, integer, string);
+        ast::NodeKind::Expression { ref boolean, ref identifier, ref integer, ref string } => {
+            let (xl_boolval, xl_id, xl_intval, xl_strval) = (boolean, identifier, integer, string);
+            if let Some(ref xl_val) = *xl_boolval {
+                let ir_val = match *xl_val { true  => "1", false => "0" }.to_string();
+                self.stack.push(Operand::BoolLit { value: ir_val });
+            }
             if let Some(ref xl_id) = *xl_id {
                 let ir_id = Self::get_ir_id_by_xl_id(&self.var_decls, xl_id).clone();
                 match step.kind {
-                    cdata::StepKind::Int => self.stack.push(Operand::IntVar { ir_id: ir_id }),
-                    cdata::StepKind::Str => self.stack.push(Operand::StrVar { ir_id: ir_id }),
+                    cdata::StepKind::Bool => self.stack.push(Operand::BoolVar { ir_id: ir_id }),
+                    cdata::StepKind::Int  => self.stack.push(Operand::IntVar  { ir_id: ir_id }),
+                    cdata::StepKind::Str  => self.stack.push(Operand::StrVar  { ir_id: ir_id }),
                     _ => unreachable!(), }
             }
             if let Some(ref xl_val) = *xl_intval {

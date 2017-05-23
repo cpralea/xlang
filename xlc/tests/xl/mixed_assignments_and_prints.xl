@@ -17,3 +17,13 @@ print d
 e = "z"
 f = e
 print e
+
+
+print true
+
+g = false
+print g
+
+h = true
+i = h
+print i

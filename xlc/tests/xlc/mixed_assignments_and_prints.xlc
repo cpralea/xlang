@@ -55,87 +55,115 @@
 [Debug]:   (Token: Value: 'print', Print@19,1)
 [Debug]:   (Token: Value: 'e', Identifier@19,7)
 [Debug]:   (Token: Value: '\n', Separator@19,8)
+[Debug]:   (Token: Value: '\n', Separator@20,1)
+[Debug]:   (Token: Value: '\n', Separator@21,1)
+[Debug]:   (Token: Value: 'print', Print@22,1)
+[Debug]:   (Token: Value: 'true', Boolean@22,7)
+[Debug]:   (Token: Value: '\n', Separator@22,11)
+[Debug]:   (Token: Value: '\n', Separator@23,1)
+[Debug]:   (Token: Value: 'g', Identifier@24,1)
+[Debug]:   (Token: Value: '=', Assign@24,3)
+[Debug]:   (Token: Value: 'false', Boolean@24,5)
+[Debug]:   (Token: Value: '\n', Separator@24,10)
+[Debug]:   (Token: Value: 'print', Print@25,1)
+[Debug]:   (Token: Value: 'g', Identifier@25,7)
+[Debug]:   (Token: Value: '\n', Separator@25,8)
+[Debug]:   (Token: Value: '\n', Separator@26,1)
+[Debug]:   (Token: Value: 'h', Identifier@27,1)
+[Debug]:   (Token: Value: '=', Assign@27,3)
+[Debug]:   (Token: Value: 'true', Boolean@27,5)
+[Debug]:   (Token: Value: '\n', Separator@27,9)
+[Debug]:   (Token: Value: 'i', Identifier@28,1)
+[Debug]:   (Token: Value: '=', Assign@28,3)
+[Debug]:   (Token: Value: 'h', Identifier@28,5)
+[Debug]:   (Token: Value: '\n', Separator@28,6)
+[Debug]:   (Token: Value: 'print', Print@29,1)
+[Debug]:   (Token: Value: 'i', Identifier@29,7)
+[Debug]:   (Token: Value: '\n', Separator@29,8)
 [Debug]: Parsed program:
 [Debug]:   (Node: Program, @N/A
 [Debug]:     Statements:
 [Debug]:       (Node: Print, @(Token: Value: 'print', Print@1,1)
 [Debug]:         Expression:
 [Debug]:           (Node: Expression, @(Token: Value: '0', Integer@1,7)
-[Debug]:             Identifier: N/A
-[Debug]:             Integer: 0
-[Debug]:             String: N/A))
+[Debug]:             Integer: 0))
 [Debug]:       (Node: Assignment, @(Token: Value: 'a', Identifier@3,1)
 [Debug]:         Identifier: a
 [Debug]:         Expression:
 [Debug]:           (Node: Expression, @(Token: Value: '1', Integer@3,5)
-[Debug]:             Identifier: N/A
-[Debug]:             Integer: 1
-[Debug]:             String: N/A))
+[Debug]:             Integer: 1))
 [Debug]:       (Node: Print, @(Token: Value: 'print', Print@4,1)
 [Debug]:         Expression:
 [Debug]:           (Node: Expression, @(Token: Value: 'a', Identifier@4,7)
-[Debug]:             Identifier: a
-[Debug]:             Integer: N/A
-[Debug]:             String: N/A))
+[Debug]:             Identifier: a))
 [Debug]:       (Node: Assignment, @(Token: Value: 'b', Identifier@6,1)
 [Debug]:         Identifier: b
 [Debug]:         Expression:
 [Debug]:           (Node: Expression, @(Token: Value: '2', Integer@6,5)
-[Debug]:             Identifier: N/A
-[Debug]:             Integer: 2
-[Debug]:             String: N/A))
+[Debug]:             Integer: 2))
 [Debug]:       (Node: Assignment, @(Token: Value: 'c', Identifier@7,1)
 [Debug]:         Identifier: c
 [Debug]:         Expression:
 [Debug]:           (Node: Expression, @(Token: Value: 'b', Identifier@7,5)
-[Debug]:             Identifier: b
-[Debug]:             Integer: N/A
-[Debug]:             String: N/A))
+[Debug]:             Identifier: b))
 [Debug]:       (Node: Print, @(Token: Value: 'print', Print@8,1)
 [Debug]:         Expression:
 [Debug]:           (Node: Expression, @(Token: Value: 'c', Identifier@8,7)
-[Debug]:             Identifier: c
-[Debug]:             Integer: N/A
-[Debug]:             String: N/A))
+[Debug]:             Identifier: c))
 [Debug]:       (Node: Print, @(Token: Value: 'print', Print@12,1)
 [Debug]:         Expression:
 [Debug]:           (Node: Expression, @(Token: Value: 'x', String@12,7)
-[Debug]:             Identifier: N/A
-[Debug]:             Integer: N/A
 [Debug]:             String: x))
 [Debug]:       (Node: Assignment, @(Token: Value: 'd', Identifier@14,1)
 [Debug]:         Identifier: d
 [Debug]:         Expression:
 [Debug]:           (Node: Expression, @(Token: Value: 'y', String@14,5)
-[Debug]:             Identifier: N/A
-[Debug]:             Integer: N/A
 [Debug]:             String: y))
 [Debug]:       (Node: Print, @(Token: Value: 'print', Print@15,1)
 [Debug]:         Expression:
 [Debug]:           (Node: Expression, @(Token: Value: 'd', Identifier@15,7)
-[Debug]:             Identifier: d
-[Debug]:             Integer: N/A
-[Debug]:             String: N/A))
+[Debug]:             Identifier: d))
 [Debug]:       (Node: Assignment, @(Token: Value: 'e', Identifier@17,1)
 [Debug]:         Identifier: e
 [Debug]:         Expression:
 [Debug]:           (Node: Expression, @(Token: Value: 'z', String@17,5)
-[Debug]:             Identifier: N/A
-[Debug]:             Integer: N/A
 [Debug]:             String: z))
 [Debug]:       (Node: Assignment, @(Token: Value: 'f', Identifier@18,1)
 [Debug]:         Identifier: f
 [Debug]:         Expression:
 [Debug]:           (Node: Expression, @(Token: Value: 'e', Identifier@18,5)
-[Debug]:             Identifier: e
-[Debug]:             Integer: N/A
-[Debug]:             String: N/A))
+[Debug]:             Identifier: e))
 [Debug]:       (Node: Print, @(Token: Value: 'print', Print@19,1)
 [Debug]:         Expression:
 [Debug]:           (Node: Expression, @(Token: Value: 'e', Identifier@19,7)
-[Debug]:             Identifier: e
-[Debug]:             Integer: N/A
-[Debug]:             String: N/A)))
+[Debug]:             Identifier: e))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@22,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: 'true', Boolean@22,7)
+[Debug]:             Boolean: true))
+[Debug]:       (Node: Assignment, @(Token: Value: 'g', Identifier@24,1)
+[Debug]:         Identifier: g
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: 'false', Boolean@24,5)
+[Debug]:             Boolean: false))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@25,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: 'g', Identifier@25,7)
+[Debug]:             Identifier: g))
+[Debug]:       (Node: Assignment, @(Token: Value: 'h', Identifier@27,1)
+[Debug]:         Identifier: h
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: 'true', Boolean@27,5)
+[Debug]:             Boolean: true))
+[Debug]:       (Node: Assignment, @(Token: Value: 'i', Identifier@28,1)
+[Debug]:         Identifier: i
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: 'h', Identifier@28,5)
+[Debug]:             Identifier: h))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@29,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: 'i', Identifier@29,7)
+[Debug]:             Identifier: i)))
 [Debug]: Compiler data:
 [Debug]:   Parent:
 [Debug]:     (Node: Program, @N/A)
@@ -164,6 +192,18 @@
 [Debug]:     (Node: Assignment, @(Token: Value: 'f', Identifier@18,1)): Str
 [Debug]:     (Node: Expression, @(Token: Value: 'e', Identifier@19,7)): Str
 [Debug]:     (Node: Print, @(Token: Value: 'print', Print@19,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: 'true', Boolean@22,7)): Bool
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@22,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: 'false', Boolean@24,5)): Bool
+[Debug]:     (Node: Assignment, @(Token: Value: 'g', Identifier@24,1)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: 'g', Identifier@25,7)): Bool
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@25,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: 'true', Boolean@27,5)): Bool
+[Debug]:     (Node: Assignment, @(Token: Value: 'h', Identifier@27,1)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: 'h', Identifier@28,5)): Bool
+[Debug]:     (Node: Assignment, @(Token: Value: 'i', Identifier@28,1)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: 'i', Identifier@29,7)): Bool
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@29,1)): Nil
 [Debug]: Code:
 [Debug]:   ; String literals.
 [Debug]:   @0 = private unnamed_addr constant [2 x i8] c"x\00", align 1
@@ -180,6 +220,9 @@
 [Debug]:     %d = alloca i8*, align 8
 [Debug]:     %e = alloca i8*, align 8
 [Debug]:     %f = alloca i8*, align 8
+[Debug]:     %g = alloca i8, align 8
+[Debug]:     %h = alloca i8, align 8
+[Debug]:     %i = alloca i8, align 8
 [Debug]:     ; Statements.
 [Debug]:     call void @__xlrt_print_int(i64 0)
 [Debug]:     store i64 1, i64* %a, align 8
@@ -199,11 +242,21 @@
 [Debug]:     store i8* %4, i8** %f, align 8
 [Debug]:     %5 = load i8*, i8** %e, align 8
 [Debug]:     call void @__xlrt_print_str(i8* %5)
+[Debug]:     call void @__xlrt_print_bool(i8 1)
+[Debug]:     store i8 0, i8* %g, align 1
+[Debug]:     %6 = load i8, i8* %g, align 1
+[Debug]:     call void @__xlrt_print_bool(i8 %6)
+[Debug]:     store i8 1, i8* %h, align 1
+[Debug]:     %7 = load i8, i8* %h, align 1
+[Debug]:     store i8 %7, i8* %i, align 1
+[Debug]:     %8 = load i8, i8* %i, align 1
+[Debug]:     call void @__xlrt_print_bool(i8 %8)
 [Debug]:     ; Return.
 [Debug]:     ret i32 0
 [Debug]:   }
 [Debug]:   
 [Debug]:   ; X language runtime symbols.
+[Debug]:   declare void @__xlrt_print_bool(i8)
 [Debug]:   declare void @__xlrt_print_int(i64)
 [Debug]:   declare void @__xlrt_print_str(i8*)
 [Debug]:   

@@ -24,8 +24,10 @@ use std::io::Read;
 
 #[test] fn assignments() {
     test("assignments", 0); }
-#[test] fn assignment_mismatched_types() {
-    test("assignment_mismatched_types", 255); }
+#[test] fn assignment_mismatched_types_int2str() {
+    test("assignment_mismatched_types_int2str", 255); }
+#[test] fn assignment_mismatched_types_bool2int() {
+    test("assignment_mismatched_types_bool2int", 255); }
 #[test] fn assignment_no_assign() {
     test("assignment_no_assign", 255); }
 #[test] fn assignment_no_expression() {

@@ -114,14 +114,17 @@ fn parse_expression<'a>(
         -> common::Status<ast::Node<'a>> {
 
     let head;
-    let (mut identifier, mut integer, mut string) = (None, None, None);
+    let (mut boolean, mut identifier, mut integer, mut string) = (None, None, None, None);
 
     let status = parse_expression_start(tokens);
     if status.error.is_some() {
-        return make_expression(status.result, identifier, integer, string).error(status.error);
+        return make_expression(status.result, boolean, identifier, integer, string)
+                    .error(status.error);
     }
     head = status.result;
     match status.result.unwrap().kind {
+        ast::TokenKind::Boolean =>
+            boolean = Some(status.result.unwrap().value.parse::<bool>().unwrap()),
         ast::TokenKind::Identifier =>
             identifier = Some(status.result.unwrap().value.clone()),
         ast::TokenKind::Integer =>
@@ -131,7 +134,7 @@ fn parse_expression<'a>(
         _ => unreachable!(),
     }
 
-    make_expression(head, identifier, integer, string)
+    make_expression(head, boolean, identifier, integer, string)
 }
 
 
@@ -188,13 +191,14 @@ fn make_print<'a>(
 
 fn make_expression<'a>(
            token: Option<&'a ast::Token>,
+           boolean: Option<bool>,
            identifier: Option<String>,
            integer: Option<i64>,
            string: Option<String>)
         -> common::Status<ast::Node<'a>> {
 
     let kind = Box::new(ast::NodeKind::Expression {
-        identifier: identifier, integer: integer, string: string });
+        boolean: boolean, identifier: identifier, integer: integer, string: string });
     common::Status { result: ast::Node::new(kind, token), error: None }
 }
 
@@ -239,8 +243,9 @@ fn parse_expression_start<'a>(
            tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
         -> common::Status<Option<&'a ast::Token>> {
 
-    next_token(tokens, Some("Identifier, Integer or String"), hashset!{
-        ast::TokenKind::Identifier, ast::TokenKind::Integer, ast::TokenKind::String })
+    next_token(tokens, Some("Identifier, Boolean, Integer or String"), hashset!{
+        ast::TokenKind::Identifier,
+        ast::TokenKind::Boolean, ast::TokenKind::Integer, ast::TokenKind::String })
 }
 
 

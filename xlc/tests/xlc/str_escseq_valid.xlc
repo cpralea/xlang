@@ -18,14 +18,10 @@
 [Debug]:       (Node: Print, @(Token: Value: 'print', Print@1,1)
 [Debug]:         Expression:
 [Debug]:           (Node: Expression, @(Token: Value: 'Name:\tJoe,\r\nAge:\t30', String@1,7)
-[Debug]:             Identifier: N/A
-[Debug]:             Integer: N/A
 [Debug]:             String: Name:\tJoe,\r\nAge:\t30))
 [Debug]:       (Node: Print, @(Token: Value: 'print', Print@2,1)
 [Debug]:         Expression:
 [Debug]:           (Node: Expression, @(Token: Value: 'Hello \"Joe\"!', String@2,7)
-[Debug]:             Identifier: N/A
-[Debug]:             Integer: N/A
 [Debug]:             String: Hello \"Joe\"!)))
 [Debug]: Compiler data:
 [Debug]:   Parent:
@@ -52,6 +48,7 @@
 [Debug]:   }
 [Debug]:   
 [Debug]:   ; X language runtime symbols.
+[Debug]:   declare void @__xlrt_print_bool(i8)
 [Debug]:   declare void @__xlrt_print_int(i64)
 [Debug]:   declare void @__xlrt_print_str(i8*)
 [Debug]:   

@@ -2,9 +2,9 @@
 [Debug]:   (Configuration:
 [Debug]:     Options: '(
 [Debug]:       'no-output:true',
-[Debug]:       'output:tests/xl/assignment_mismatched_types.ll',
+[Debug]:       'output:tests/xl/assignment_mismatched_types_int2str.ll',
 [Debug]:       'verbose:true')',
-[Debug]:     File: 'tests/xl/assignment_mismatched_types.xl')
+[Debug]:     File: 'tests/xl/assignment_mismatched_types_int2str.xl')
 [Debug]: Parsed tokens:
 [Debug]:   (Token: Value: 'x', Identifier@1,1)
 [Debug]:   (Token: Value: '=', Assign@1,3)
@@ -21,16 +21,12 @@
 [Debug]:         Identifier: x
 [Debug]:         Expression:
 [Debug]:           (Node: Expression, @(Token: Value: 'ok', String@1,5)
-[Debug]:             Identifier: N/A
-[Debug]:             Integer: N/A
 [Debug]:             String: ok))
 [Debug]:       (Node: Assignment, @(Token: Value: 'x', Identifier@2,1)
 [Debug]:         Identifier: x
 [Debug]:         Expression:
 [Debug]:           (Node: Expression, @(Token: Value: '1', Integer@2,5)
-[Debug]:             Identifier: N/A
-[Debug]:             Integer: 1
-[Debug]:             String: N/A)))
+[Debug]:             Integer: 1)))
 [Debug]: Compiler data:
 [Debug]:   Parent:
 [Debug]:     (Node: Program, @N/A)

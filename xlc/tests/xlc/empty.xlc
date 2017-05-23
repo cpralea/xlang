@@ -29,6 +29,7 @@
 [Debug]:   }
 [Debug]:   
 [Debug]:   ; X language runtime symbols.
+[Debug]:   declare void @__xlrt_print_bool(i8)
 [Debug]:   declare void @__xlrt_print_int(i64)
 [Debug]:   declare void @__xlrt_print_str(i8*)
 [Debug]:   

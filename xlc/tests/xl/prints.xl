@@ -1,2 +1,4 @@
 print 0
 print "hello"
+print true
+print false

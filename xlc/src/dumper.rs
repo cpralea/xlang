@@ -100,35 +100,32 @@ impl<'a> ast::NodeVisitor<'a> for NodeDumper {
                 self.println_data(identifier, "Identifier");
                 self.print_child(expression, "Expression");
             },
-            _ => unreachable!(),
-        }
+            _ => unreachable!(), }
     }
 
     fn visit_expression(&mut self, expression: &'a ast::Node<'a>) {
         match *expression.kind {
-            ast::NodeKind::Expression { ref identifier, ref integer, ref string } => {
-                self.println_data(identifier, "Identifier");
-                self.println_data(integer, "Integer");
-                self.print_data(string, "String");
+            ast::NodeKind::Expression { ref boolean, ref identifier, ref integer, ref string } => {
+                if boolean   .is_some() { self.print_data(boolean,    "Boolean"   ); }
+                if identifier.is_some() { self.print_data(identifier, "Identifier"); }
+                if integer   .is_some() { self.print_data(integer,    "Integer"   ); }
+                if string    .is_some() { self.print_data(string,     "String"    ); }
             },
-            _ => unreachable!(),
-        }
+            _ => unreachable!(), }
     }
 
     fn visit_print(&mut self, print: &'a ast::Node<'a>) {
         match *print.kind {
             ast::NodeKind::Print { ref expression } =>
                 self.print_child(expression, "Expression"),
-            _ => unreachable!(),
-        }
+            _ => unreachable!(), }
     }
 
     fn visit_program(&mut self, program: &'a ast::Node<'a>) {
         match *program.kind {
             ast::NodeKind::Program { ref statements } =>
                 self.print_children(statements, "Statements"),
-            _ => unreachable!(),
-        }
+            _ => unreachable!(), }
     }
 
     fn status(self) -> common::Status<Self::Result> {

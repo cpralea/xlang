@@ -4,6 +4,9 @@ separator       = \n
 identifier      = [_a-zA-Z][_a-zA-Z0-9]*
 integer         = 0 | [1-9][0-9]*
 string          = ".*"
+boolean         = kw:true | kw:false
+kw:true         = true
+kw:false        = false
 kw:print        = print
 op:assignment   = =
 
@@ -12,4 +15,4 @@ program         = statement*
 statement       = assignment | print
 assignment      = identifier op:assignment expression
 print           = kw:print expression
-expression      = identifier | integer | string
+expression      = identifier | integer | string | boolean

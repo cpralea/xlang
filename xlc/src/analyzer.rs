@@ -67,7 +67,10 @@ fn compute_expression_step_kind<'a>(
     let mut error = None;
 
     match *steps[pos].node.kind {
-        ast::NodeKind::Expression { ref identifier, ref integer, ref string } => {
+        ast::NodeKind::Expression { ref boolean, ref identifier, ref integer, ref string } => {
+            if boolean.is_some() {
+                steps[pos].kind = cdata::StepKind::Bool;
+            }
             if identifier.is_some() {
                 let identifier = identifier.as_ref().unwrap();
                 steps[pos].kind = get_identifier_kind(identifier, &steps);

@@ -16,7 +16,7 @@ print message
 ## xlrt Runtime
 The runtime is located under ```xlrt```.
 
-For now it only exposes two functions backing the ```print``` operation for strings and integers.
+For now it only exposes three functions backing the ```print``` operation for booleans, integers and strings.
 
 ## xlc Compiler
 The compiler is located under ```xlc```.

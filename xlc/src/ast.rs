@@ -4,6 +4,7 @@ use common;
 #[derive(Debug, PartialEq, Eq, Hash)]
 pub enum TokenKind {
     Assign,
+    Boolean,
     Identifier,
     Integer,
     String,
@@ -27,6 +28,7 @@ pub enum NodeKind<'a> {
     },
     Expression {
         identifier: Option<String>,
+        boolean: Option<bool>,
         integer: Option<i64>,
         string: Option<String>,
     },
