@@ -5,16 +5,30 @@ use std::process;
 use std::io::Read;
 
 
-#[test] fn empty() {
-    test("empty", 0); }
-#[test] fn str_escseq_valid() {
-    test("str_escseq_valid", 0); }
-#[test] fn prints() {
-    test("prints", 0); }
-#[test] fn assignments() {
-    test("assignments", 0); }
-#[test] fn mixed_assignments_and_prints() {
-    test("mixed_assignments_and_prints", 0); }
+#[test]
+fn empty() {
+    test("empty", 0);
+}
+#[test]
+fn literals_string_escseqs() {
+    test("literals_string_escseqs", 0);
+}
+#[test]
+fn prints() {
+    test("prints", 0);
+}
+#[test]
+fn assignments() {
+    test("assignments", 0);
+}
+#[test]
+fn expressions_boolean() {
+    test("expressions_boolean", 0);
+}
+#[test]
+fn expressions_integer() {
+    test("expressions_integer", 0);
+}
 
 
 fn test(file: &str, exit: i32) {
@@ -24,7 +38,7 @@ fn test(file: &str, exit: i32) {
     let out = &out.unwrap();
 
     let python = match cfg!(windows) {
-        true  => "py.exe",
+        true => "py.exe",
         false => "python3",
     };
     let output = process::Command::new(python)
@@ -43,15 +57,12 @@ fn test(file: &str, exit: i32) {
 
 fn check_code(actual: Option<i32>, expected: i32) {
     let expected = Some(expected);
-    assert!(actual == expected,
-        "Exit code mismatch. Got {:?}, expected {:?}.",
-        actual, expected);
+    assert!(actual == expected, "Exit code mismatch. Got {:?}, expected {:?}.", actual, expected);
 }
 
 
 fn check_out(actual: &str, expected: &str) {
-    assert!(actual == expected,
-        "Program output mismatch.");
+    assert!(actual == expected, "Program output mismatch.");
 }
 
 

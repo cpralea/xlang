@@ -1,0 +1,37 @@
+[Debug]: Configuration:
+[Debug]:   (Configuration:
+[Debug]:     Options: '(
+[Debug]:       'no-output:true',
+[Debug]:       'output:tests/xl/expression_boolint_type_mismatch.ll',
+[Debug]:       'verbose:true')',
+[Debug]:     File: 'tests/xl/expression_boolint_type_mismatch.xl')
+[Debug]: Parsed tokens:
+[Debug]:   (Token: Value: 'print', Print@1,1)
+[Debug]:   (Token: Value: 'true', Boolean@1,7)
+[Debug]:   (Token: Value: '||', Or@1,12)
+[Debug]:   (Token: Value: '0', Integer@1,15)
+[Debug]:   (Token: Value: '\n', Separator@1,16)
+[Debug]: Parsed program:
+[Debug]:   (Node: Program, @N/A
+[Debug]:     Statements:
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@1,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '||', Or@1,12)
+[Debug]:             Operator: ||
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: 'true', Boolean@1,7)
+[Debug]:                 Boolean: true)
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: '0', Integer@1,15)
+[Debug]:                 Integer: 0))))
+[Debug]: Compiler data:
+[Debug]:   Parent:
+[Debug]:     (Node: Program, @N/A)
+[Debug]:   Execution steps:
+[Debug]:     (Node: Expression, @(Token: Value: 'true', Boolean@1,7)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: '0', Integer@1,15)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '||', Or@1,12)): Unk
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@1,1)): Unk
+print true || 0
+           ^
+[Error]: @1,12: Cannot apply '||' to Boolean and Integer.

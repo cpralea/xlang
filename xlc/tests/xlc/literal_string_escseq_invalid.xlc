@@ -1,0 +1,13 @@
+[Debug]: Configuration:
+[Debug]:   (Configuration:
+[Debug]:     Options: '(
+[Debug]:       'no-output:true',
+[Debug]:       'output:tests/xl/literal_string_escseq_invalid.ll',
+[Debug]:       'verbose:true')',
+[Debug]:     File: 'tests/xl/literal_string_escseq_invalid.xl')
+[Debug]: Parsed tokens:
+[Debug]:   (Token: Value: 'print', Print@1,1)
+[Debug]:   (Token: Value: '', String@1,7)
+print "\x"
+       ^
+[Error]: @1,8: Invalid escape sequence '\x'.

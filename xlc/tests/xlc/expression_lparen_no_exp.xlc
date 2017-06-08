@@ -1,0 +1,22 @@
+[Debug]: Configuration:
+[Debug]:   (Configuration:
+[Debug]:     Options: '(
+[Debug]:       'no-output:true',
+[Debug]:       'output:tests/xl/expression_lparen_no_exp.ll',
+[Debug]:       'verbose:true')',
+[Debug]:     File: 'tests/xl/expression_lparen_no_exp.xl')
+[Debug]: Parsed tokens:
+[Debug]:   (Token: Value: 'print', Print@1,1)
+[Debug]:   (Token: Value: '1', Integer@1,7)
+[Debug]:   (Token: Value: '+', Add@1,9)
+[Debug]:   (Token: Value: '(', LParen@1,11)
+[Debug]:   (Token: Value: '\n', Separator@1,12)
+[Debug]: Parsed program:
+[Debug]:   (Node: Program, @N/A
+[Debug]:     Statements:
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@1,1)
+[Debug]:         Expression:
+[Debug]:           N/A))
+print 1 + (
+           ^
+[Error]: @1,12: Expected operand. Found End of Statement.

@@ -1,0 +1,37 @@
+[Debug]: Configuration:
+[Debug]:   (Configuration:
+[Debug]:     Options: '(
+[Debug]:       'no-output:true',
+[Debug]:       'output:tests/xl/expression_intstr_type_mismatch.ll',
+[Debug]:       'verbose:true')',
+[Debug]:     File: 'tests/xl/expression_intstr_type_mismatch.xl')
+[Debug]: Parsed tokens:
+[Debug]:   (Token: Value: 'print', Print@1,1)
+[Debug]:   (Token: Value: '2', Integer@1,7)
+[Debug]:   (Token: Value: '*', Mul@1,9)
+[Debug]:   (Token: Value: 'ok', String@1,11)
+[Debug]:   (Token: Value: '\n', Separator@1,15)
+[Debug]: Parsed program:
+[Debug]:   (Node: Program, @N/A
+[Debug]:     Statements:
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@1,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '*', Mul@1,9)
+[Debug]:             Operator: *
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: '2', Integer@1,7)
+[Debug]:                 Integer: 2)
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: 'ok', String@1,11)
+[Debug]:                 String: ok))))
+[Debug]: Compiler data:
+[Debug]:   Parent:
+[Debug]:     (Node: Program, @N/A)
+[Debug]:   Execution steps:
+[Debug]:     (Node: Expression, @(Token: Value: '2', Integer@1,7)): Int
+[Debug]:     (Node: Expression, @(Token: Value: 'ok', String@1,11)): Str
+[Debug]:     (Node: Expression, @(Token: Value: '*', Mul@1,9)): Unk
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@1,1)): Unk
+print 2 * "ok"
+        ^
+[Error]: @1,9: Cannot apply '*' to Integer and String.

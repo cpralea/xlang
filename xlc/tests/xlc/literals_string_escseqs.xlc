@@ -1,0 +1,54 @@
+[Debug]: Configuration:
+[Debug]:   (Configuration:
+[Debug]:     Options: '(
+[Debug]:       'no-output:true',
+[Debug]:       'output:tests/xl/literals_string_escseqs.ll',
+[Debug]:       'verbose:true')',
+[Debug]:     File: 'tests/xl/literals_string_escseqs.xl')
+[Debug]: Parsed tokens:
+[Debug]:   (Token: Value: 'print', Print@1,1)
+[Debug]:   (Token: Value: 'X:\tY,\r\nZ:\tT', String@1,7)
+[Debug]:   (Token: Value: '\n', Separator@1,24)
+[Debug]:   (Token: Value: 'print', Print@2,1)
+[Debug]:   (Token: Value: 'hello \"world\"!', String@2,7)
+[Debug]:   (Token: Value: '\n', Separator@2,25)
+[Debug]: Parsed program:
+[Debug]:   (Node: Program, @N/A
+[Debug]:     Statements:
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@1,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: 'X:\tY,\r\nZ:\tT', String@1,7)
+[Debug]:             String: X:\tY,\r\nZ:\tT))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@2,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: 'hello \"world\"!', String@2,7)
+[Debug]:             String: hello \"world\"!)))
+[Debug]: Compiler data:
+[Debug]:   Parent:
+[Debug]:     (Node: Program, @N/A)
+[Debug]:   Execution steps:
+[Debug]:     (Node: Expression, @(Token: Value: 'X:\tY,\r\nZ:\tT', String@1,7)): Str
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@1,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: 'hello \"world\"!', String@2,7)): Str
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@2,1)): Nil
+[Debug]: Code:
+[Debug]:   ; String literals.
+[Debug]:   @0 = private unnamed_addr constant [12 x i8] c"X:\09Y,\0D\0AZ:\09T\00", align 1
+[Debug]:   @1 = private unnamed_addr constant [15 x i8] c"hello \22world\22!\00", align 1
+[Debug]:   
+[Debug]:   ; Program entry point.
+[Debug]:   define i32 @main() {
+[Debug]:   entry:
+[Debug]:     ; Variables.
+[Debug]:     ; Statements.
+[Debug]:     call void @__xlrt_print_str(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @0, i64 0, i64 0))
+[Debug]:     call void @__xlrt_print_str(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @1, i64 0, i64 0))
+[Debug]:     ; Return.
+[Debug]:     ret i32 0
+[Debug]:   }
+[Debug]:   
+[Debug]:   ; X language runtime symbols.
+[Debug]:   declare void @__xlrt_print_bool(i8)
+[Debug]:   declare void @__xlrt_print_int(i64)
+[Debug]:   declare void @__xlrt_print_str(i8*)
+[Debug]:   

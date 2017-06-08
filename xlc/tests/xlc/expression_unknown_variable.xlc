@@ -1,0 +1,37 @@
+[Debug]: Configuration:
+[Debug]:   (Configuration:
+[Debug]:     Options: '(
+[Debug]:       'no-output:true',
+[Debug]:       'output:tests/xl/expression_unknown_variable.ll',
+[Debug]:       'verbose:true')',
+[Debug]:     File: 'tests/xl/expression_unknown_variable.xl')
+[Debug]: Parsed tokens:
+[Debug]:   (Token: Value: 'print', Print@1,1)
+[Debug]:   (Token: Value: '1', Integer@1,7)
+[Debug]:   (Token: Value: '+', Add@1,9)
+[Debug]:   (Token: Value: 'x', Identifier@1,11)
+[Debug]:   (Token: Value: '\n', Separator@1,12)
+[Debug]: Parsed program:
+[Debug]:   (Node: Program, @N/A
+[Debug]:     Statements:
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@1,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '+', Add@1,9)
+[Debug]:             Operator: +
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: '1', Integer@1,7)
+[Debug]:                 Integer: 1)
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: 'x', Identifier@1,11)
+[Debug]:                 Identifier: x))))
+[Debug]: Compiler data:
+[Debug]:   Parent:
+[Debug]:     (Node: Program, @N/A)
+[Debug]:   Execution steps:
+[Debug]:     (Node: Expression, @(Token: Value: '1', Integer@1,7)): Int
+[Debug]:     (Node: Expression, @(Token: Value: 'x', Identifier@1,11)): Unk
+[Debug]:     (Node: Expression, @(Token: Value: '+', Add@1,9)): Unk
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@1,1)): Unk
+print 1 + x
+          ^
+[Error]: @1,11: Unknown identifier 'x'.

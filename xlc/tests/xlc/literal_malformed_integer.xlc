@@ -1,0 +1,13 @@
+[Debug]: Configuration:
+[Debug]:   (Configuration:
+[Debug]:     Options: '(
+[Debug]:       'no-output:true',
+[Debug]:       'output:tests/xl/literal_malformed_integer.ll',
+[Debug]:       'verbose:true')',
+[Debug]:     File: 'tests/xl/literal_malformed_integer.xl')
+[Debug]: Parsed tokens:
+[Debug]:   (Token: Value: 'print', Print@1,1)
+[Debug]:   (Token: Value: '01', Integer@1,7)
+print 01
+      ^
+[Error]: @1,7: Invalid integer '01'.

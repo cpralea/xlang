@@ -1,10 +1,8 @@
 extern crate argparse;
 extern crate itertools;
-#[macro_use] extern crate maplit;
+#[macro_use]
+extern crate maplit;
 extern crate ref_eq;
-
-
-use std::process;
 
 
 mod common;
@@ -14,9 +12,13 @@ mod cdata;
 mod config;
 mod dumper;
 mod emitter;
-#[macro_use] mod io;
+#[macro_use]
+mod io;
 mod parser;
 mod tokenizer;
+
+
+use std::process;
 
 
 fn main() {
@@ -31,8 +33,9 @@ fn main() {
 
 
 fn write_code(code: &String, config: &config::Configuration) {
-    if config.no_output() { return; }
-
+    if config.no_output() {
+        return;
+    }
     let ll = config.output();
     let result = io::Destination::to_file(&ll);
     if let Err(_) = result {
@@ -47,8 +50,8 @@ fn write_code(code: &String, config: &config::Configuration) {
 }
 
 
-fn emit_llvm<'a>(cdata: &cdata::CompilerData<'a>, config: &config::Configuration) -> String {
-    let status = emitter::emit_llvm(cdata);
+fn emit_llvm<'a>(block: &cdata::Block<'a>, config: &config::Configuration) -> String {
+    let status = emitter::emit_llvm(block);
     let code = status.result;
     if config.verbose() {
         dump_code(&code);
@@ -59,24 +62,26 @@ fn emit_llvm<'a>(cdata: &cdata::CompilerData<'a>, config: &config::Configuration
 
 
 fn analyze<'a>(node: &'a ast::Node<'a>,
-        source: &io::Source, config: &config::Configuration)
-        -> cdata::CompilerData<'a> {
+               source: &io::Source,
+               config: &config::Configuration)
+               -> cdata::Block<'a> {
     let status = analyzer::analyze(node);
-    let cdata = status.result;
+    let block = status.result;
     if config.verbose() {
-        dump_cdata(&cdata);
+        dump_cdata(&block);
     }
     if let Some(ref error) = status.error {
         print_error(source, error);
         process::exit(255);
     }
-    cdata
+    block
 }
 
 
 fn parse<'a>(tokens: &'a ast::Tokens,
-        source: &io::Source, config: &config::Configuration)
-        -> ast::Node<'a> {
+             source: &io::Source,
+             config: &config::Configuration)
+             -> ast::Node<'a> {
     let status = parser::parse(tokens);
     let node = status.result;
     if config.verbose() {
@@ -149,15 +154,15 @@ fn dump_code(code: &String) {
 }
 
 
-fn dump_cdata(cdata: &cdata::CompilerData) {
+fn dump_cdata(block: &cdata::Block) {
     debug!("Compiler data:");
 
     debug!("{}Parent:", common::take(1, common::TAB));
-    debug!("{}{}", common::take(2, common::TAB), dumper::dump_bare_node(cdata.node));
+    debug!("{}{}", common::take(2, common::TAB), dumper::dump_bare_node(block.node));
 
     debug!("{}Execution steps:", common::take(1, common::TAB));
-    if !cdata.steps.is_empty() {
-        for step in cdata.steps.iter() {
+    if !block.steps.is_empty() {
+        for step in block.steps.iter() {
             debug!("{}{}", common::take(2, common::TAB), dumper::dump_step(step));
         }
     } else {

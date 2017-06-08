@@ -1,0 +1,19 @@
+[Debug]: Configuration:
+[Debug]:   (Configuration:
+[Debug]:     Options: '(
+[Debug]:       'no-output:true',
+[Debug]:       'output:tests/xl/print_no_exp.ll',
+[Debug]:       'verbose:true')',
+[Debug]:     File: 'tests/xl/print_no_exp.xl')
+[Debug]: Parsed tokens:
+[Debug]:   (Token: Value: 'print', Print@1,1)
+[Debug]:   (Token: Value: '\n', Separator@1,6)
+[Debug]: Parsed program:
+[Debug]:   (Node: Program, @N/A
+[Debug]:     Statements:
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@1,1)
+[Debug]:         Expression:
+[Debug]:           N/A))
+print
+     ^
+[Error]: @1,6: Expected operand. Found End of Statement.

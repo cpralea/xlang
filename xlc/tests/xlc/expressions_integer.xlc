@@ -1,0 +1,342 @@
+[Debug]: Configuration:
+[Debug]:   (Configuration:
+[Debug]:     Options: '(
+[Debug]:       'no-output:true',
+[Debug]:       'output:tests/xl/expressions_integer.ll',
+[Debug]:       'verbose:true')',
+[Debug]:     File: 'tests/xl/expressions_integer.xl')
+[Debug]: Parsed tokens:
+[Debug]:   (Token: Value: 'print', Print@1,1)
+[Debug]:   (Token: Value: '1', Integer@1,7)
+[Debug]:   (Token: Value: '+', Add@1,9)
+[Debug]:   (Token: Value: '2', Integer@1,11)
+[Debug]:   (Token: Value: '\n', Separator@1,12)
+[Debug]:   (Token: Value: 'print', Print@2,1)
+[Debug]:   (Token: Value: '1', Integer@2,7)
+[Debug]:   (Token: Value: '-', Sub@2,9)
+[Debug]:   (Token: Value: '2', Integer@2,11)
+[Debug]:   (Token: Value: '\n', Separator@2,12)
+[Debug]:   (Token: Value: 'print', Print@3,1)
+[Debug]:   (Token: Value: '1', Integer@3,7)
+[Debug]:   (Token: Value: '*', Mul@3,9)
+[Debug]:   (Token: Value: '2', Integer@3,11)
+[Debug]:   (Token: Value: '\n', Separator@3,12)
+[Debug]:   (Token: Value: 'print', Print@4,1)
+[Debug]:   (Token: Value: '1', Integer@4,7)
+[Debug]:   (Token: Value: '/', Div@4,9)
+[Debug]:   (Token: Value: '2', Integer@4,11)
+[Debug]:   (Token: Value: '\n', Separator@4,12)
+[Debug]:   (Token: Value: '\n', Separator@5,1)
+[Debug]:   (Token: Value: 'print', Print@6,1)
+[Debug]:   (Token: Value: '1', Integer@6,7)
+[Debug]:   (Token: Value: '+', Add@6,9)
+[Debug]:   (Token: Value: '2', Integer@6,11)
+[Debug]:   (Token: Value: '*', Mul@6,12)
+[Debug]:   (Token: Value: '3', Integer@6,13)
+[Debug]:   (Token: Value: '\n', Separator@6,14)
+[Debug]:   (Token: Value: 'print', Print@7,1)
+[Debug]:   (Token: Value: '(', LParen@7,7)
+[Debug]:   (Token: Value: '1', Integer@7,8)
+[Debug]:   (Token: Value: '+', Add@7,9)
+[Debug]:   (Token: Value: '2', Integer@7,10)
+[Debug]:   (Token: Value: ')', RParen@7,11)
+[Debug]:   (Token: Value: '*', Mul@7,13)
+[Debug]:   (Token: Value: '3', Integer@7,15)
+[Debug]:   (Token: Value: '\n', Separator@7,16)
+[Debug]:   (Token: Value: 'print', Print@8,1)
+[Debug]:   (Token: Value: '1', Integer@8,7)
+[Debug]:   (Token: Value: '*', Mul@8,8)
+[Debug]:   (Token: Value: '2', Integer@8,9)
+[Debug]:   (Token: Value: '+', Add@8,11)
+[Debug]:   (Token: Value: '3', Integer@8,13)
+[Debug]:   (Token: Value: '/', Div@8,14)
+[Debug]:   (Token: Value: '4', Integer@8,15)
+[Debug]:   (Token: Value: '-', Sub@8,17)
+[Debug]:   (Token: Value: '5', Integer@8,19)
+[Debug]:   (Token: Value: '\n', Separator@8,20)
+[Debug]:   (Token: Value: 'print', Print@9,1)
+[Debug]:   (Token: Value: '1', Integer@9,7)
+[Debug]:   (Token: Value: '*', Mul@9,9)
+[Debug]:   (Token: Value: '(', LParen@9,11)
+[Debug]:   (Token: Value: '2', Integer@9,12)
+[Debug]:   (Token: Value: '+', Add@9,13)
+[Debug]:   (Token: Value: '3', Integer@9,14)
+[Debug]:   (Token: Value: ')', RParen@9,15)
+[Debug]:   (Token: Value: '/', Div@9,17)
+[Debug]:   (Token: Value: '(', LParen@9,19)
+[Debug]:   (Token: Value: '4', Integer@9,20)
+[Debug]:   (Token: Value: '-', Sub@9,21)
+[Debug]:   (Token: Value: '5', Integer@9,22)
+[Debug]:   (Token: Value: ')', RParen@9,23)
+[Debug]:   (Token: Value: '\n', Separator@9,24)
+[Debug]:   (Token: Value: 'print', Print@10,1)
+[Debug]:   (Token: Value: '(', LParen@10,7)
+[Debug]:   (Token: Value: '(', LParen@10,8)
+[Debug]:   (Token: Value: '1', Integer@10,9)
+[Debug]:   (Token: Value: '-', Sub@10,10)
+[Debug]:   (Token: Value: '2', Integer@10,11)
+[Debug]:   (Token: Value: ')', RParen@10,12)
+[Debug]:   (Token: Value: '+', Add@10,13)
+[Debug]:   (Token: Value: '3', Integer@10,14)
+[Debug]:   (Token: Value: ')', RParen@10,15)
+[Debug]:   (Token: Value: '*', Mul@10,17)
+[Debug]:   (Token: Value: '4', Integer@10,19)
+[Debug]:   (Token: Value: '\n', Separator@10,20)
+[Debug]: Parsed program:
+[Debug]:   (Node: Program, @N/A
+[Debug]:     Statements:
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@1,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '+', Add@1,9)
+[Debug]:             Operator: +
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: '1', Integer@1,7)
+[Debug]:                 Integer: 1)
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: '2', Integer@1,11)
+[Debug]:                 Integer: 2)))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@2,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '-', Sub@2,9)
+[Debug]:             Operator: -
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: '1', Integer@2,7)
+[Debug]:                 Integer: 1)
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: '2', Integer@2,11)
+[Debug]:                 Integer: 2)))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@3,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '*', Mul@3,9)
+[Debug]:             Operator: *
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: '1', Integer@3,7)
+[Debug]:                 Integer: 1)
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: '2', Integer@3,11)
+[Debug]:                 Integer: 2)))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@4,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '/', Div@4,9)
+[Debug]:             Operator: /
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: '1', Integer@4,7)
+[Debug]:                 Integer: 1)
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: '2', Integer@4,11)
+[Debug]:                 Integer: 2)))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@6,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '+', Add@6,9)
+[Debug]:             Operator: +
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: '1', Integer@6,7)
+[Debug]:                 Integer: 1)
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: '*', Mul@6,12)
+[Debug]:                 Operator: *
+[Debug]:                 Left:
+[Debug]:                   (Node: Expression, @(Token: Value: '2', Integer@6,11)
+[Debug]:                     Integer: 2)
+[Debug]:                 Right:
+[Debug]:                   (Node: Expression, @(Token: Value: '3', Integer@6,13)
+[Debug]:                     Integer: 3))))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@7,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '*', Mul@7,13)
+[Debug]:             Operator: *
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: '+', Add@7,9)
+[Debug]:                 Operator: +
+[Debug]:                 Left:
+[Debug]:                   (Node: Expression, @(Token: Value: '1', Integer@7,8)
+[Debug]:                     Integer: 1)
+[Debug]:                 Right:
+[Debug]:                   (Node: Expression, @(Token: Value: '2', Integer@7,10)
+[Debug]:                     Integer: 2))
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: '3', Integer@7,15)
+[Debug]:                 Integer: 3)))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@8,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '+', Add@8,11)
+[Debug]:             Operator: +
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: '*', Mul@8,8)
+[Debug]:                 Operator: *
+[Debug]:                 Left:
+[Debug]:                   (Node: Expression, @(Token: Value: '1', Integer@8,7)
+[Debug]:                     Integer: 1)
+[Debug]:                 Right:
+[Debug]:                   (Node: Expression, @(Token: Value: '2', Integer@8,9)
+[Debug]:                     Integer: 2))
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: '-', Sub@8,17)
+[Debug]:                 Operator: -
+[Debug]:                 Left:
+[Debug]:                   (Node: Expression, @(Token: Value: '/', Div@8,14)
+[Debug]:                     Operator: /
+[Debug]:                     Left:
+[Debug]:                       (Node: Expression, @(Token: Value: '3', Integer@8,13)
+[Debug]:                         Integer: 3)
+[Debug]:                     Right:
+[Debug]:                       (Node: Expression, @(Token: Value: '4', Integer@8,15)
+[Debug]:                         Integer: 4))
+[Debug]:                 Right:
+[Debug]:                   (Node: Expression, @(Token: Value: '5', Integer@8,19)
+[Debug]:                     Integer: 5))))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@9,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '*', Mul@9,9)
+[Debug]:             Operator: *
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: '1', Integer@9,7)
+[Debug]:                 Integer: 1)
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: '/', Div@9,17)
+[Debug]:                 Operator: /
+[Debug]:                 Left:
+[Debug]:                   (Node: Expression, @(Token: Value: '+', Add@9,13)
+[Debug]:                     Operator: +
+[Debug]:                     Left:
+[Debug]:                       (Node: Expression, @(Token: Value: '2', Integer@9,12)
+[Debug]:                         Integer: 2)
+[Debug]:                     Right:
+[Debug]:                       (Node: Expression, @(Token: Value: '3', Integer@9,14)
+[Debug]:                         Integer: 3))
+[Debug]:                 Right:
+[Debug]:                   (Node: Expression, @(Token: Value: '-', Sub@9,21)
+[Debug]:                     Operator: -
+[Debug]:                     Left:
+[Debug]:                       (Node: Expression, @(Token: Value: '4', Integer@9,20)
+[Debug]:                         Integer: 4)
+[Debug]:                     Right:
+[Debug]:                       (Node: Expression, @(Token: Value: '5', Integer@9,22)
+[Debug]:                         Integer: 5)))))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@10,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '*', Mul@10,17)
+[Debug]:             Operator: *
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: '+', Add@10,13)
+[Debug]:                 Operator: +
+[Debug]:                 Left:
+[Debug]:                   (Node: Expression, @(Token: Value: '-', Sub@10,10)
+[Debug]:                     Operator: -
+[Debug]:                     Left:
+[Debug]:                       (Node: Expression, @(Token: Value: '1', Integer@10,9)
+[Debug]:                         Integer: 1)
+[Debug]:                     Right:
+[Debug]:                       (Node: Expression, @(Token: Value: '2', Integer@10,11)
+[Debug]:                         Integer: 2))
+[Debug]:                 Right:
+[Debug]:                   (Node: Expression, @(Token: Value: '3', Integer@10,14)
+[Debug]:                     Integer: 3))
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: '4', Integer@10,19)
+[Debug]:                 Integer: 4))))
+[Debug]: Compiler data:
+[Debug]:   Parent:
+[Debug]:     (Node: Program, @N/A)
+[Debug]:   Execution steps:
+[Debug]:     (Node: Expression, @(Token: Value: '1', Integer@1,7)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '2', Integer@1,11)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '+', Add@1,9)): Int
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@1,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: '1', Integer@2,7)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '2', Integer@2,11)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '-', Sub@2,9)): Int
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@2,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: '1', Integer@3,7)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '2', Integer@3,11)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '*', Mul@3,9)): Int
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@3,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: '1', Integer@4,7)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '2', Integer@4,11)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '/', Div@4,9)): Int
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@4,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: '1', Integer@6,7)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '2', Integer@6,11)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '3', Integer@6,13)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '*', Mul@6,12)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '+', Add@6,9)): Int
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@6,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: '1', Integer@7,8)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '2', Integer@7,10)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '+', Add@7,9)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '3', Integer@7,15)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '*', Mul@7,13)): Int
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@7,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: '1', Integer@8,7)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '2', Integer@8,9)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '*', Mul@8,8)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '3', Integer@8,13)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '4', Integer@8,15)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '/', Div@8,14)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '5', Integer@8,19)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '-', Sub@8,17)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '+', Add@8,11)): Int
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@8,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: '1', Integer@9,7)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '2', Integer@9,12)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '3', Integer@9,14)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '+', Add@9,13)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '4', Integer@9,20)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '5', Integer@9,22)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '-', Sub@9,21)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '/', Div@9,17)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '*', Mul@9,9)): Int
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@9,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: '1', Integer@10,9)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '2', Integer@10,11)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '-', Sub@10,10)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '3', Integer@10,14)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '+', Add@10,13)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '4', Integer@10,19)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '*', Mul@10,17)): Int
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@10,1)): Nil
+[Debug]: Code:
+[Debug]:   ; String literals.
+[Debug]:   
+[Debug]:   ; Program entry point.
+[Debug]:   define i32 @main() {
+[Debug]:   entry:
+[Debug]:     ; Variables.
+[Debug]:     ; Statements.
+[Debug]:     %0 = add nsw i64 1, 2
+[Debug]:     call void @__xlrt_print_int(i64 %0)
+[Debug]:     %1 = sub nsw i64 1, 2
+[Debug]:     call void @__xlrt_print_int(i64 %1)
+[Debug]:     %2 = mul nsw i64 1, 2
+[Debug]:     call void @__xlrt_print_int(i64 %2)
+[Debug]:     %3 = sdiv i64 1, 2
+[Debug]:     call void @__xlrt_print_int(i64 %3)
+[Debug]:     %4 = mul nsw i64 2, 3
+[Debug]:     %5 = add nsw i64 1, %4
+[Debug]:     call void @__xlrt_print_int(i64 %5)
+[Debug]:     %6 = add nsw i64 1, 2
+[Debug]:     %7 = mul nsw i64 %6, 3
+[Debug]:     call void @__xlrt_print_int(i64 %7)
+[Debug]:     %8 = mul nsw i64 1, 2
+[Debug]:     %9 = sdiv i64 3, 4
+[Debug]:     %10 = sub nsw i64 %9, 5
+[Debug]:     %11 = add nsw i64 %8, %10
+[Debug]:     call void @__xlrt_print_int(i64 %11)
+[Debug]:     %12 = add nsw i64 2, 3
+[Debug]:     %13 = sub nsw i64 4, 5
+[Debug]:     %14 = sdiv i64 %12, %13
+[Debug]:     %15 = mul nsw i64 1, %14
+[Debug]:     call void @__xlrt_print_int(i64 %15)
+[Debug]:     %16 = sub nsw i64 1, 2
+[Debug]:     %17 = add nsw i64 %16, 3
+[Debug]:     %18 = mul nsw i64 %17, 4
+[Debug]:     call void @__xlrt_print_int(i64 %18)
+[Debug]:     ; Return.
+[Debug]:     ret i32 0
+[Debug]:   }
+[Debug]:   
+[Debug]:   ; X language runtime symbols.
+[Debug]:   declare void @__xlrt_print_bool(i8)
+[Debug]:   declare void @__xlrt_print_int(i64)
+[Debug]:   declare void @__xlrt_print_str(i8*)
+[Debug]:   

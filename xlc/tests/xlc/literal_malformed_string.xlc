@@ -1,0 +1,15 @@
+[Debug]: Configuration:
+[Debug]:   (Configuration:
+[Debug]:     Options: '(
+[Debug]:       'no-output:true',
+[Debug]:       'output:tests/xl/literal_malformed_string.ll',
+[Debug]:       'verbose:true')',
+[Debug]:     File: 'tests/xl/literal_malformed_string.xl')
+[Debug]: Parsed tokens:
+[Debug]:   (Token: Value: 'print', Print@1,1)
+[Debug]:   (Token: Value: 'ok
+', String@1,7)
+print "ok
+      ^
+[Error]: @1,7: Invalid string 'ok
+'.

@@ -1,0 +1,300 @@
+[Debug]: Configuration:
+[Debug]:   (Configuration:
+[Debug]:     Options: '(
+[Debug]:       'no-output:true',
+[Debug]:       'output:tests/xl/expressions_boolean.ll',
+[Debug]:       'verbose:true')',
+[Debug]:     File: 'tests/xl/expressions_boolean.xl')
+[Debug]: Parsed tokens:
+[Debug]:   (Token: Value: 'print', Print@1,1)
+[Debug]:   (Token: Value: 'false', Boolean@1,7)
+[Debug]:   (Token: Value: '&&', And@1,13)
+[Debug]:   (Token: Value: 'false', Boolean@1,16)
+[Debug]:   (Token: Value: '\n', Separator@1,21)
+[Debug]:   (Token: Value: 'print', Print@2,1)
+[Debug]:   (Token: Value: 'false', Boolean@2,7)
+[Debug]:   (Token: Value: '&&', And@2,13)
+[Debug]:   (Token: Value: 'true', Boolean@2,16)
+[Debug]:   (Token: Value: '\n', Separator@2,20)
+[Debug]:   (Token: Value: 'print', Print@3,1)
+[Debug]:   (Token: Value: 'true', Boolean@3,7)
+[Debug]:   (Token: Value: '&&', And@3,12)
+[Debug]:   (Token: Value: 'false', Boolean@3,15)
+[Debug]:   (Token: Value: '\n', Separator@3,20)
+[Debug]:   (Token: Value: 'print', Print@4,1)
+[Debug]:   (Token: Value: 'true', Boolean@4,7)
+[Debug]:   (Token: Value: '&&', And@4,12)
+[Debug]:   (Token: Value: 'true', Boolean@4,15)
+[Debug]:   (Token: Value: '\n', Separator@4,19)
+[Debug]:   (Token: Value: '\n', Separator@5,1)
+[Debug]:   (Token: Value: 'print', Print@6,1)
+[Debug]:   (Token: Value: 'false', Boolean@6,7)
+[Debug]:   (Token: Value: '||', Or@6,13)
+[Debug]:   (Token: Value: 'false', Boolean@6,16)
+[Debug]:   (Token: Value: '\n', Separator@6,21)
+[Debug]:   (Token: Value: 'print', Print@7,1)
+[Debug]:   (Token: Value: 'false', Boolean@7,7)
+[Debug]:   (Token: Value: '||', Or@7,13)
+[Debug]:   (Token: Value: 'true', Boolean@7,16)
+[Debug]:   (Token: Value: '\n', Separator@7,20)
+[Debug]:   (Token: Value: 'print', Print@8,1)
+[Debug]:   (Token: Value: 'true', Boolean@8,7)
+[Debug]:   (Token: Value: '||', Or@8,12)
+[Debug]:   (Token: Value: 'false', Boolean@8,15)
+[Debug]:   (Token: Value: '\n', Separator@8,20)
+[Debug]:   (Token: Value: 'print', Print@9,1)
+[Debug]:   (Token: Value: 'true', Boolean@9,7)
+[Debug]:   (Token: Value: '||', Or@9,12)
+[Debug]:   (Token: Value: 'true', Boolean@9,15)
+[Debug]:   (Token: Value: '\n', Separator@9,19)
+[Debug]:   (Token: Value: '\n', Separator@10,1)
+[Debug]:   (Token: Value: 'print', Print@11,1)
+[Debug]:   (Token: Value: 'true', Boolean@11,7)
+[Debug]:   (Token: Value: '||', Or@11,12)
+[Debug]:   (Token: Value: 'true', Boolean@11,15)
+[Debug]:   (Token: Value: '&&', And@11,20)
+[Debug]:   (Token: Value: 'false', Boolean@11,23)
+[Debug]:   (Token: Value: '\n', Separator@11,28)
+[Debug]:   (Token: Value: 'print', Print@12,1)
+[Debug]:   (Token: Value: 'false', Boolean@12,7)
+[Debug]:   (Token: Value: '&&', And@12,13)
+[Debug]:   (Token: Value: 'true', Boolean@12,16)
+[Debug]:   (Token: Value: '||', Or@12,21)
+[Debug]:   (Token: Value: 'true', Boolean@12,24)
+[Debug]:   (Token: Value: '\n', Separator@12,28)
+[Debug]:   (Token: Value: 'print', Print@13,1)
+[Debug]:   (Token: Value: 'false', Boolean@13,7)
+[Debug]:   (Token: Value: '&&', And@13,13)
+[Debug]:   (Token: Value: '(', LParen@13,16)
+[Debug]:   (Token: Value: 'true', Boolean@13,17)
+[Debug]:   (Token: Value: '||', Or@13,22)
+[Debug]:   (Token: Value: 'true', Boolean@13,25)
+[Debug]:   (Token: Value: ')', RParen@13,29)
+[Debug]:   (Token: Value: '\n', Separator@13,30)
+[Debug]: Parsed program:
+[Debug]:   (Node: Program, @N/A
+[Debug]:     Statements:
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@1,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '&&', And@1,13)
+[Debug]:             Operator: &&
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: 'false', Boolean@1,7)
+[Debug]:                 Boolean: false)
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: 'false', Boolean@1,16)
+[Debug]:                 Boolean: false)))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@2,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '&&', And@2,13)
+[Debug]:             Operator: &&
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: 'false', Boolean@2,7)
+[Debug]:                 Boolean: false)
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: 'true', Boolean@2,16)
+[Debug]:                 Boolean: true)))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@3,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '&&', And@3,12)
+[Debug]:             Operator: &&
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: 'true', Boolean@3,7)
+[Debug]:                 Boolean: true)
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: 'false', Boolean@3,15)
+[Debug]:                 Boolean: false)))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@4,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '&&', And@4,12)
+[Debug]:             Operator: &&
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: 'true', Boolean@4,7)
+[Debug]:                 Boolean: true)
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: 'true', Boolean@4,15)
+[Debug]:                 Boolean: true)))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@6,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '||', Or@6,13)
+[Debug]:             Operator: ||
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: 'false', Boolean@6,7)
+[Debug]:                 Boolean: false)
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: 'false', Boolean@6,16)
+[Debug]:                 Boolean: false)))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@7,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '||', Or@7,13)
+[Debug]:             Operator: ||
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: 'false', Boolean@7,7)
+[Debug]:                 Boolean: false)
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: 'true', Boolean@7,16)
+[Debug]:                 Boolean: true)))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@8,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '||', Or@8,12)
+[Debug]:             Operator: ||
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: 'true', Boolean@8,7)
+[Debug]:                 Boolean: true)
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: 'false', Boolean@8,15)
+[Debug]:                 Boolean: false)))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@9,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '||', Or@9,12)
+[Debug]:             Operator: ||
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: 'true', Boolean@9,7)
+[Debug]:                 Boolean: true)
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: 'true', Boolean@9,15)
+[Debug]:                 Boolean: true)))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@11,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '||', Or@11,12)
+[Debug]:             Operator: ||
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: 'true', Boolean@11,7)
+[Debug]:                 Boolean: true)
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: '&&', And@11,20)
+[Debug]:                 Operator: &&
+[Debug]:                 Left:
+[Debug]:                   (Node: Expression, @(Token: Value: 'true', Boolean@11,15)
+[Debug]:                     Boolean: true)
+[Debug]:                 Right:
+[Debug]:                   (Node: Expression, @(Token: Value: 'false', Boolean@11,23)
+[Debug]:                     Boolean: false))))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@12,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '||', Or@12,21)
+[Debug]:             Operator: ||
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: '&&', And@12,13)
+[Debug]:                 Operator: &&
+[Debug]:                 Left:
+[Debug]:                   (Node: Expression, @(Token: Value: 'false', Boolean@12,7)
+[Debug]:                     Boolean: false)
+[Debug]:                 Right:
+[Debug]:                   (Node: Expression, @(Token: Value: 'true', Boolean@12,16)
+[Debug]:                     Boolean: true))
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: 'true', Boolean@12,24)
+[Debug]:                 Boolean: true)))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@13,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '&&', And@13,13)
+[Debug]:             Operator: &&
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @(Token: Value: 'false', Boolean@13,7)
+[Debug]:                 Boolean: false)
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: '||', Or@13,22)
+[Debug]:                 Operator: ||
+[Debug]:                 Left:
+[Debug]:                   (Node: Expression, @(Token: Value: 'true', Boolean@13,17)
+[Debug]:                     Boolean: true)
+[Debug]:                 Right:
+[Debug]:                   (Node: Expression, @(Token: Value: 'true', Boolean@13,25)
+[Debug]:                     Boolean: true)))))
+[Debug]: Compiler data:
+[Debug]:   Parent:
+[Debug]:     (Node: Program, @N/A)
+[Debug]:   Execution steps:
+[Debug]:     (Node: Expression, @(Token: Value: 'false', Boolean@1,7)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: 'false', Boolean@1,16)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: '&&', And@1,13)): Bool
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@1,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: 'false', Boolean@2,7)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: 'true', Boolean@2,16)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: '&&', And@2,13)): Bool
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@2,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: 'true', Boolean@3,7)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: 'false', Boolean@3,15)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: '&&', And@3,12)): Bool
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@3,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: 'true', Boolean@4,7)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: 'true', Boolean@4,15)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: '&&', And@4,12)): Bool
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@4,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: 'false', Boolean@6,7)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: 'false', Boolean@6,16)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: '||', Or@6,13)): Bool
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@6,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: 'false', Boolean@7,7)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: 'true', Boolean@7,16)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: '||', Or@7,13)): Bool
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@7,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: 'true', Boolean@8,7)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: 'false', Boolean@8,15)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: '||', Or@8,12)): Bool
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@8,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: 'true', Boolean@9,7)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: 'true', Boolean@9,15)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: '||', Or@9,12)): Bool
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@9,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: 'true', Boolean@11,7)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: 'true', Boolean@11,15)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: 'false', Boolean@11,23)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: '&&', And@11,20)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: '||', Or@11,12)): Bool
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@11,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: 'false', Boolean@12,7)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: 'true', Boolean@12,16)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: '&&', And@12,13)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: 'true', Boolean@12,24)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: '||', Or@12,21)): Bool
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@12,1)): Nil
+[Debug]:     (Node: Expression, @(Token: Value: 'false', Boolean@13,7)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: 'true', Boolean@13,17)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: 'true', Boolean@13,25)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: '||', Or@13,22)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: '&&', And@13,13)): Bool
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@13,1)): Nil
+[Debug]: Code:
+[Debug]:   ; String literals.
+[Debug]:   
+[Debug]:   ; Program entry point.
+[Debug]:   define i32 @main() {
+[Debug]:   entry:
+[Debug]:     ; Variables.
+[Debug]:     ; Statements.
+[Debug]:     %0 = and i8 0, 0
+[Debug]:     call void @__xlrt_print_bool(i8 %0)
+[Debug]:     %1 = and i8 0, 1
+[Debug]:     call void @__xlrt_print_bool(i8 %1)
+[Debug]:     %2 = and i8 1, 0
+[Debug]:     call void @__xlrt_print_bool(i8 %2)
+[Debug]:     %3 = and i8 1, 1
+[Debug]:     call void @__xlrt_print_bool(i8 %3)
+[Debug]:     %4 = or i8 0, 0
+[Debug]:     call void @__xlrt_print_bool(i8 %4)
+[Debug]:     %5 = or i8 0, 1
+[Debug]:     call void @__xlrt_print_bool(i8 %5)
+[Debug]:     %6 = or i8 1, 0
+[Debug]:     call void @__xlrt_print_bool(i8 %6)
+[Debug]:     %7 = or i8 1, 1
+[Debug]:     call void @__xlrt_print_bool(i8 %7)
+[Debug]:     %8 = and i8 1, 0
+[Debug]:     %9 = or i8 1, %8
+[Debug]:     call void @__xlrt_print_bool(i8 %9)
+[Debug]:     %10 = and i8 0, 1
+[Debug]:     %11 = or i8 %10, 1
+[Debug]:     call void @__xlrt_print_bool(i8 %11)
+[Debug]:     %12 = or i8 1, 1
+[Debug]:     %13 = and i8 0, %12
+[Debug]:     call void @__xlrt_print_bool(i8 %13)
+[Debug]:     ; Return.
+[Debug]:     ret i32 0
+[Debug]:   }
+[Debug]:   
+[Debug]:   ; X language runtime symbols.
+[Debug]:   declare void @__xlrt_print_bool(i8)
+[Debug]:   declare void @__xlrt_print_int(i64)
+[Debug]:   declare void @__xlrt_print_str(i8*)
+[Debug]:   

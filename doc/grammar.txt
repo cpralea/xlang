@@ -9,10 +9,21 @@ kw:true         = true
 kw:false        = false
 kw:print        = print
 op:assignment   = =
+op:add          = +
+op:sub          = -
+op:mul          = *
+op:div          = /
+op:and          = &&
+op:or           = ||
+lparen          = (
+rparen          = )
 
 # Grammar
 program         = statement*
 statement       = assignment | print
 assignment      = identifier op:assignment expression
 print           = kw:print expression
-expression      = identifier | integer | string | boolean
+expression      = exp:l2
+exp:l2          = exp:l1 ((op:add | op:sub | op:or) exp:l1)?
+exp:l1          = exp:l0 ((op:mul | op:div | op:and) exp:l0)?
+exp:l0          = identifier | integer | string | boolean | lparen exp:l2 rparen

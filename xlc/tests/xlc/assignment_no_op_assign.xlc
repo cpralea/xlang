@@ -1,0 +1,20 @@
+[Debug]: Configuration:
+[Debug]:   (Configuration:
+[Debug]:     Options: '(
+[Debug]:       'no-output:true',
+[Debug]:       'output:tests/xl/assignment_no_op_assign.ll',
+[Debug]:       'verbose:true')',
+[Debug]:     File: 'tests/xl/assignment_no_op_assign.xl')
+[Debug]: Parsed tokens:
+[Debug]:   (Token: Value: 'x', Identifier@1,1)
+[Debug]:   (Token: Value: '\n', Separator@1,2)
+[Debug]: Parsed program:
+[Debug]:   (Node: Program, @N/A
+[Debug]:     Statements:
+[Debug]:       (Node: Assignment, @(Token: Value: 'x', Identifier@1,1)
+[Debug]:         Identifier: x
+[Debug]:         Expression:
+[Debug]:           N/A))
+x
+ ^
+[Error]: @1,2: Expected '='. Found End of Statement.

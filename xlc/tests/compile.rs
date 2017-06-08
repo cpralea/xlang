@@ -5,38 +5,94 @@ use std::process;
 use std::io::Read;
 
 
-#[test] fn empty() {
-    test("empty", 0); }
-#[test] fn missing() {
-    test("missing", 255); }
+#[test]
+fn empty() {
+    test("empty", 0);
+}
+#[test]
+fn missing() {
+    test("missing", 255);
+}
 
-#[test] fn str_escseq_valid() {
-    test("str_escseq_valid", 0); }
-#[test] fn str_escseq_invalid() {
-    test("str_escseq_invalid", 255); }
 
-#[test] fn prints() {
-    test("prints", 0); }
-#[test] fn print_no_expression() {
-    test("print_no_expression", 255); }
-#[test] fn print_unknown_variable() {
-    test("print_unknown_variable", 255); }
+#[test]
+fn literals_string_escseqs() {
+    test("literals_string_escseqs", 0);
+}
+#[test]
+fn literal_malformed_integer() {
+    test("literal_malformed_integer", 255);
+}
+#[test]
+fn literal_malformed_string() {
+    test("literal_malformed_string", 255);
+}
+#[test]
+fn literal_string_escseq_invalid() {
+    test("literal_string_escseq_invalid", 255);
+}
 
-#[test] fn assignments() {
-    test("assignments", 0); }
-#[test] fn assignment_mismatched_types_int2str() {
-    test("assignment_mismatched_types_int2str", 255); }
-#[test] fn assignment_mismatched_types_bool2int() {
-    test("assignment_mismatched_types_bool2int", 255); }
-#[test] fn assignment_no_assign() {
-    test("assignment_no_assign", 255); }
-#[test] fn assignment_no_expression() {
-    test("assignment_no_expression", 255); }
-#[test] fn assignment_unknown_variable() {
-    test("assignment_unknown_variable", 255); }
 
-#[test] fn mixed_assignments_and_prints() {
-    test("mixed_assignments_and_prints", 0); }
+#[test]
+fn prints() {
+    test("prints", 0);
+}
+#[test]
+fn print_no_exp() {
+    test("print_no_exp", 255);
+}
+
+
+#[test]
+fn assignments() {
+    test("assignments", 0);
+}
+#[test]
+fn assignment_no_exp() {
+    test("assignment_no_exp", 255);
+}
+#[test]
+fn assignment_no_op_assign() {
+    test("assignment_no_op_assign", 255);
+}
+
+
+#[test]
+fn expressions_boolean() {
+    test("expressions_boolean", 0);
+}
+#[test]
+fn expressions_integer() {
+    test("expressions_integer", 0);
+}
+#[test]
+fn expression_boolint_type_mismatch() {
+    test("expression_boolint_type_mismatch", 255);
+}
+#[test]
+fn expression_boolstr_type_mismatch() {
+    test("expression_boolstr_type_mismatch", 255);
+}
+#[test]
+fn expression_intstr_type_mismatch() {
+    test("expression_intstr_type_mismatch", 255);
+}
+#[test]
+fn expression_lparen_no_exp() {
+    test("expression_lparen_no_exp", 255);
+}
+#[test]
+fn expression_lparen_exp_no_rparen() {
+    test("expression_lparen_exp_no_rparen", 255);
+}
+#[test]
+fn expression_unknown_variable() {
+    test("expression_unknown_variable", 255);
+}
+#[test]
+fn expression_operand_operator_no_operand() {
+    test("expression_operand_operator_no_operand", 255);
+}
 
 
 fn test(file: &str, exit: i32) {
@@ -61,15 +117,12 @@ fn test(file: &str, exit: i32) {
 
 fn check_code(actual: Option<i32>, expected: i32) {
     let expected = Some(expected);
-    assert!(actual == expected,
-        "Exit code mismatch. Got {:?}, expected {:?}.",
-        actual, expected);
+    assert!(actual == expected, "Exit code mismatch. Got {:?}, expected {:?}.", actual, expected);
 }
 
 
 fn check_xlc(actual: &str, expected: &str) {
-    assert!(actual == expected,
-        "Compiler output mismatch.");
+    assert!(actual == expected, "Compiler output mismatch.");
 }
 
 
