@@ -23,27 +23,19 @@ pub fn get_identifier_kind<'a>(identifier: &String,
 
 
 pub fn get_binary_operands_offsets<'a>(pos: usize, steps: &'a cdata::Steps<'a>) -> (usize, usize) {
-    let (mut l, mut r) = (2, 1);
-    assert!(pos >= l && pos >= r);
+    assert!(pos >= 2);
+    (skip_expression(pos, 1, steps), 1)
+}
 
-    while let ast::NodeKind::Expression { ref operator, .. } = *steps[pos - r].node.kind {
-        match *operator {
-            Some(ref operator) => {
-                match operator.as_str() {
-                    "+" | "-" | "*" | "/" | "||" | "&&" => {
-                        r += 1;
-                        l += 2;
-                        assert!(pos >= l && pos >= r);
-                    }
-                    _ => unreachable!(),
-                }
-            }
-            None => {
-                r = 1;
-                break;
+
+fn skip_expression<'a>(pos: usize, i: usize, steps: &'a cdata::Steps<'a>) -> usize {
+    match *steps[pos - i].node.kind {
+        ast::NodeKind::Expression { ref operator, .. } => {
+            match *operator {
+                Some(_) => skip_expression(pos, skip_expression(pos, i + 1, steps), steps),
+                None => i + 1,
             }
         }
+        _ => unreachable!(),
     }
-
-    (l, r)
 }

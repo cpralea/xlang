@@ -30,13 +30,19 @@ pub fn tokenize(source: &io::Source) -> common::Status<ast::Tokens> {
                 source.next();
                 continue;
             }
-            '=' => status = operators::parse_assign(source),
+            '=' if source.peek(1) != Some('=') => status = operators::parse_assign(source),
             '+' => status = operators::parse_add(source),
             '-' => status = operators::parse_sub(source),
             '*' => status = operators::parse_mul(source),
             '/' => status = operators::parse_div(source),
             '|' => status = operators::parse_or(source),
             '&' => status = operators::parse_and(source),
+            '=' if source.peek(1) == Some('=') => status = operators::parse_eq(source),
+            '!' => status = operators::parse_ne(source),
+            '<' if source.peek(1) != Some('=') => status = operators::parse_lt(source),
+            '<' if source.peek(1) == Some('=') => status = operators::parse_le(source),
+            '>' if source.peek(1) != Some('=') => status = operators::parse_gt(source),
+            '>' if source.peek(1) == Some('=') => status = operators::parse_ge(source),
             '(' => status = parentheses::parse_lparen(source),
             ')' => status = parentheses::parse_rparen(source),
             '_' | 'a'...'z' | 'A'...'Z' => status = words::parse_keyword_or_identifier(source),

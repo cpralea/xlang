@@ -8,7 +8,7 @@
 [Debug]: Parsed tokens:
 [Debug]:   (Token: Value: 'print', Print@1,1)
 [Debug]:   (Token: Value: 'true', Boolean@1,7)
-[Debug]:   (Token: Value: '||', Or@1,12)
+[Debug]:   (Token: Value: '==', Eq@1,12)
 [Debug]:   (Token: Value: '0', String@1,15)
 [Debug]:   (Token: Value: '\n', Separator@1,18)
 [Debug]: Parsed program:
@@ -16,8 +16,8 @@
 [Debug]:     Statements:
 [Debug]:       (Node: Print, @(Token: Value: 'print', Print@1,1)
 [Debug]:         Expression:
-[Debug]:           (Node: Expression, @(Token: Value: '||', Or@1,12)
-[Debug]:             Operator: ||
+[Debug]:           (Node: Expression, @(Token: Value: '==', Eq@1,12)
+[Debug]:             Operator: ==
 [Debug]:             Left:
 [Debug]:               (Node: Expression, @(Token: Value: 'true', Boolean@1,7)
 [Debug]:                 Boolean: true)
@@ -30,8 +30,8 @@
 [Debug]:   Execution steps:
 [Debug]:     (Node: Expression, @(Token: Value: 'true', Boolean@1,7)): Bool
 [Debug]:     (Node: Expression, @(Token: Value: '0', String@1,15)): Str
-[Debug]:     (Node: Expression, @(Token: Value: '||', Or@1,12)): Unk
+[Debug]:     (Node: Expression, @(Token: Value: '==', Eq@1,12)): Unk
 [Debug]:     (Node: Print, @(Token: Value: 'print', Print@1,1)): Unk
-print true || "0"
+print true == "0"
            ^
-[Error]: @1,12: Cannot apply '||' to Boolean and String.
+[Error]: @1,12: Cannot apply '==' to Boolean and String.

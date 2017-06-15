@@ -38,3 +38,33 @@ pub fn parse_or(source: &mut io::SourceFlexIterator) -> common::Status<ast::Toke
 pub fn parse_and(source: &mut io::SourceFlexIterator) -> common::Status<ast::Token> {
     utils::parse_symbol(source, "&&", ast::TokenKind::And)
 }
+
+
+pub fn parse_eq(source: &mut io::SourceFlexIterator) -> common::Status<ast::Token> {
+    utils::parse_symbol(source, "==", ast::TokenKind::Eq)
+}
+
+
+pub fn parse_ne(source: &mut io::SourceFlexIterator) -> common::Status<ast::Token> {
+    utils::parse_symbol(source, "!=", ast::TokenKind::Ne)
+}
+
+
+pub fn parse_lt(source: &mut io::SourceFlexIterator) -> common::Status<ast::Token> {
+    utils::parse_symbol(source, "<", ast::TokenKind::Lt)
+}
+
+
+pub fn parse_le(source: &mut io::SourceFlexIterator) -> common::Status<ast::Token> {
+    utils::parse_symbol(source, "<=", ast::TokenKind::Le)
+}
+
+
+pub fn parse_gt(source: &mut io::SourceFlexIterator) -> common::Status<ast::Token> {
+    utils::parse_symbol(source, ">", ast::TokenKind::Gt)
+}
+
+
+pub fn parse_ge(source: &mut io::SourceFlexIterator) -> common::Status<ast::Token> {
+    utils::parse_symbol(source, ">=", ast::TokenKind::Ge)
+}

@@ -15,6 +15,12 @@ op:mul          = *
 op:div          = /
 op:and          = &&
 op:or           = ||
+op:eq           = ==
+op:ne           = !=
+op:lt           = <
+op:le           = <=
+op:gt           = >
+op:ge           = >=
 lparen          = (
 rparen          = )
 
@@ -23,7 +29,9 @@ program         = statement*
 statement       = assignment | print
 assignment      = identifier op:assignment expression
 print           = kw:print expression
-expression      = exp:l2
+expression      = exp:l4
+exp:l4          = exp:l3 ((op:eq | op:ne ) exp:l3)?
+exp:l3          = exp:l2 ((op:lt | op:le | op:gt | op:ge ) exp:l2)?
 exp:l2          = exp:l1 ((op:add | op:sub | op:or) exp:l1)?
 exp:l1          = exp:l0 ((op:mul | op:div | op:and) exp:l0)?
-exp:l0          = identifier | integer | string | boolean | lparen exp:l2 rparen
+exp:l0          = identifier | integer | string | boolean | lparen expression rparen
