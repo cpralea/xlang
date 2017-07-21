@@ -90,10 +90,7 @@ def get_link_opts(xlc_dir):
         return '-L{} -lxlrt'.format(xlc_dir)
     elif sys.platform.find('win') != -1:
         # Windows-specific workaround to identify the import library.
-        xlc_dir = os.path.abspath('{}/deps'.format(xlc_dir))
-        xlrt_lib = [file for file in os.listdir(xlc_dir) \
-            if file.startswith('xlrt-') and file.endswith('.dll.lib')][0]
-        return '-L{} -l{}'.format(xlc_dir, xlrt_lib)
+        return '-L{}/deps -lxlrt.dll.lib'.format(xlc_dir)
     else:
         sys.exit('Unsupported platform \'{}\'.'.format(sys.platform))
 
