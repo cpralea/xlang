@@ -122,6 +122,10 @@ fn check_code(actual: Option<i32>, expected: i32) {
 
 
 fn check_xlc(actual: &str, expected: &str) {
+    let (actual, expected) = match cfg!(windows) {
+        true => (actual.replace("\r", ""), expected.replace("\r", "")),
+        false => (actual.to_string(), expected.to_string()),
+    };
     assert!(actual == expected, "Compiler output mismatch.");
 }
 
