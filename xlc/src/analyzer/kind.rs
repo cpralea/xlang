@@ -20,9 +20,9 @@ pub fn compute_step_kinds<'a>(mut steps: cdata::Steps<'a>) -> common::Status<cda
         steps = status.result;
         if status.error.is_some() {
             return common::Status {
-                       result: steps,
-                       error: status.error,
-                   };
+                result: steps,
+                error: status.error,
+            };
         }
     }
 
@@ -33,9 +33,10 @@ pub fn compute_step_kinds<'a>(mut steps: cdata::Steps<'a>) -> common::Status<cda
 }
 
 
-fn assign_nil_step_kind<'a>(mut steps: cdata::Steps<'a>,
-                            pos: usize)
-                            -> common::Status<cdata::Steps<'a>> {
+fn assign_nil_step_kind<'a>(
+    mut steps: cdata::Steps<'a>,
+    pos: usize,
+) -> common::Status<cdata::Steps<'a>> {
     steps[pos].kind = cdata::StepKind::Nil;
     common::Status {
         result: steps,

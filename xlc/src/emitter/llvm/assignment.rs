@@ -71,22 +71,28 @@ impl<'a> emitter::Emitter<'a> {
 
     fn emit_assignment_bool(&mut self, ir_srcid: &String, xl_dstvar: &String) {
         let ir_dstid = Self::get_ir_id_by_xl_id(&self.var_decls, xl_dstvar);
-        Self::ir(&mut self.ir,
-                 1,
-                 format!("store i8 {}, i8* {}, align 1", ir_srcid, ir_dstid).as_str());
+        Self::ir(
+            &mut self.ir,
+            1,
+            format!("store i8 {}, i8* {}, align 1", ir_srcid, ir_dstid).as_str(),
+        );
     }
 
     fn emit_assignment_int(&mut self, ir_srcid: &String, xl_dstvar: &String) {
         let ir_dstid = Self::get_ir_id_by_xl_id(&self.var_decls, xl_dstvar);
-        Self::ir(&mut self.ir,
-                 1,
-                 format!("store i64 {}, i64* {}, align 8", ir_srcid, ir_dstid).as_str());
+        Self::ir(
+            &mut self.ir,
+            1,
+            format!("store i64 {}, i64* {}, align 8", ir_srcid, ir_dstid).as_str(),
+        );
     }
 
     fn emit_assignment_str(&mut self, ir_srcid: &String, xl_dstvar: &String) {
         let ir_dstid = Self::get_ir_id_by_xl_id(&self.var_decls, xl_dstvar);
-        Self::ir(&mut self.ir,
-                 1,
-                 format!("store i8* {}, i8** {}, align 8", ir_srcid, ir_dstid).as_str());
+        Self::ir(
+            &mut self.ir,
+            1,
+            format!("store i8* {}, i8** {}, align 8", ir_srcid, ir_dstid).as_str(),
+        );
     }
 }

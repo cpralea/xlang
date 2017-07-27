@@ -8,6 +8,17 @@ pub struct Token {
 }
 
 
+impl Token {
+    pub fn new(kind: TokenKind, value: String, location: common::Location) -> Token {
+        Token {
+            kind: kind,
+            value: value,
+            location: location,
+        }
+    }
+}
+
+
 pub type Tokens = common::Collection<Token>;
 
 
@@ -28,6 +39,7 @@ pub enum TokenKind {
     Lt,
     Mul,
     Ne,
+    Not,
     Or,
     String,
     Print,

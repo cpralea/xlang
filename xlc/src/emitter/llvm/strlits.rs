@@ -9,13 +9,16 @@ impl<'a> emitter::Emitter<'a> {
         self.build_str_decls();
         Self::ir(&mut self.ir, 0, "; String literals.");
         for str_decl in self.str_decls.iter() {
-            Self::ir(&mut self.ir,
-                     0,
-                     format!("{} = private unnamed_addr constant [{} x i8] c\"{}\", align 1",
-                             str_decl.ir_id,
-                             str_decl.ir_len,
-                             str_decl.ir_val)
-                             .as_str())
+            Self::ir(
+                &mut self.ir,
+                0,
+                format!(
+                    "{} = private unnamed_addr constant [{} x i8] c\"{}\", align 1",
+                    str_decl.ir_id,
+                    str_decl.ir_len,
+                    str_decl.ir_val
+                ).as_str(),
+            )
         }
         Self::ir(&mut self.ir, 0, "");
     }

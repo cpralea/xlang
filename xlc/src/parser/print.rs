@@ -6,8 +6,9 @@ use super::statement;
 use super::utils;
 
 
-pub fn parse_print<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
-                       -> common::Status<ast::Node<'a>> {
+pub fn parse_print<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+) -> common::Status<ast::Node<'a>> {
     let head;
     let (mut expression,) = (None,);
 
@@ -32,15 +33,17 @@ pub fn parse_print<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
 }
 
 
-fn parse_print_keyword<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
-                           -> common::Status<Option<&'a ast::Token>> {
+fn parse_print_keyword<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+) -> common::Status<Option<&'a ast::Token>> {
     utils::next_token(tokens, Some("'print'"), hashset!{ ast::TokenKind::Print })
 }
 
 
-fn make_print<'a>(token: Option<&'a ast::Token>,
-                  expression: Option<ast::Node<'a>>)
-                  -> common::Status<ast::Node<'a>> {
+fn make_print<'a>(
+    token: Option<&'a ast::Token>,
+    expression: Option<ast::Node<'a>>,
+) -> common::Status<ast::Node<'a>> {
     let kind = Box::new(ast::NodeKind::Print { expression: expression });
     common::Status {
         result: ast::Node::new(kind, token),

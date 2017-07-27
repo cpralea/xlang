@@ -6,9 +6,9 @@ use io;
 pub fn parse_integer(source: &mut io::SourceFlexIterator) -> common::Status<ast::Token> {
     assert!(source.peek(0).is_some());
     assert!(match source.peek(0).unwrap() {
-                '0'...'9' => true,
-                _ => false,
-            });
+        '0'...'9' => true,
+        _ => false,
+    });
 
     let location = source.location();
     let mut value = String::new();
@@ -21,17 +21,13 @@ pub fn parse_integer(source: &mut io::SourceFlexIterator) -> common::Status<ast:
         }
     }
 
-    let token = ast::Token {
-        kind: ast::TokenKind::Integer,
-        value: value,
-        location: location,
-    };
+    let token = ast::Token::new(ast::TokenKind::Integer, value, location);
     let error = match token.value.len() > 1 && token.value.starts_with("0") {
         true => {
             Some(common::Error {
-                     location: Some(token.location),
-                     message: format!("Invalid integer '{}'.", token.value),
-                 })
+                location: Some(token.location),
+                message: format!("Invalid integer '{}'.", token.value),
+            })
         }
         false => None,
     };
@@ -62,10 +58,9 @@ pub fn parse_string(source: &mut io::SourceFlexIterator) -> common::Status<ast::
                         }
                         _ => {
                             error = Some(common::Error {
-                                             location: Some(source.location()),
-                                             message: format!("Invalid escape sequence '\\{}'.",
-                                                              next_chr),
-                                         });
+                                location: Some(source.location()),
+                                message: format!("Invalid escape sequence '\\{}'.", next_chr),
+                            });
                             break;
                         }
                     }
@@ -79,20 +74,16 @@ pub fn parse_string(source: &mut io::SourceFlexIterator) -> common::Status<ast::
         }
     }
 
-    let token = ast::Token {
-        kind: ast::TokenKind::String,
-        value: value,
-        location: location,
-    };
+    let token = ast::Token::new(ast::TokenKind::String, value, location);
     error = error.or(match source.peek(0) {
-                         None => {
-                             Some(common::Error {
-                                      location: Some(token.location),
-                                      message: format!("Invalid string '{}'.", token.value),
-                                  })
-                         }
-                         Some(_) => None,
-                     });
+        None => {
+            Some(common::Error {
+                location: Some(token.location),
+                message: format!("Invalid string '{}'.", token.value),
+            })
+        }
+        Some(_) => None,
+    });
     source.next();
     common::Status {
         result: token,

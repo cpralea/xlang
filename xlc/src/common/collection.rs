@@ -71,3 +71,13 @@ impl<'a, T> iterators::FlexIteratorByRef<'a, T> for CollectionFlexIter<'a, T> {
         self.collection.items.get(self.index + offset)
     }
 }
+
+
+impl<'a, T: Copy> iterators::FlexIteratorByVal<T> for CollectionFlexIter<'a, T> {
+    fn next(&mut self) -> Option<T> {
+        (self as &mut iterators::FlexIteratorByRef<'a, T>).next().map(|e| *e)
+    }
+    fn peek(&self, offset: usize) -> Option<T> {
+        (self as &iterators::FlexIteratorByRef<'a, T>).peek(offset).map(|e| *e)
+    }
+}

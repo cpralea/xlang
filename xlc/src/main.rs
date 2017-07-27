@@ -61,10 +61,11 @@ fn emit_llvm<'a>(block: &cdata::Block<'a>, config: &config::Configuration) -> St
 }
 
 
-fn analyze<'a>(node: &'a ast::Node<'a>,
-               source: &io::Source,
-               config: &config::Configuration)
-               -> cdata::Block<'a> {
+fn analyze<'a>(
+    node: &'a ast::Node<'a>,
+    source: &io::Source,
+    config: &config::Configuration,
+) -> cdata::Block<'a> {
     let status = analyzer::analyze(node);
     let block = status.result;
     if config.verbose() {
@@ -78,10 +79,11 @@ fn analyze<'a>(node: &'a ast::Node<'a>,
 }
 
 
-fn parse<'a>(tokens: &'a ast::Tokens,
-             source: &io::Source,
-             config: &config::Configuration)
-             -> ast::Node<'a> {
+fn parse<'a>(
+    tokens: &'a ast::Tokens,
+    source: &io::Source,
+    config: &config::Configuration,
+) -> ast::Node<'a> {
     let status = parser::parse(tokens);
     let node = status.result;
     if config.verbose() {

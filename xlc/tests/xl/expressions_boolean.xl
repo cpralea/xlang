@@ -1,3 +1,6 @@
+print !true
+print !false
+
 print false && false
 print false && true
 print true && false
@@ -24,3 +27,6 @@ print 4 >= 4
 
 print 1<2 == 2<3
 print 1 + 2*3 != 1*2 + 3
+
+print false || !false
+print true && !false

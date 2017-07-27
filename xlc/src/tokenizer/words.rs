@@ -3,13 +3,14 @@ use ast;
 use io;
 
 
-pub fn parse_keyword_or_identifier(source: &mut io::SourceFlexIterator)
-                                   -> common::Status<ast::Token> {
+pub fn parse_keyword_or_identifier(
+    source: &mut io::SourceFlexIterator,
+) -> common::Status<ast::Token> {
     assert!(source.peek(0).is_some());
     assert!(match source.peek(0).unwrap() {
-                '_' | 'a'...'z' | 'A'...'Z' => true,
-                _ => false,
-            });
+        '_' | 'a'...'z' | 'A'...'Z' => true,
+        _ => false,
+    });
 
     let location = source.location();
     let mut value = String::new();
@@ -28,11 +29,7 @@ pub fn parse_keyword_or_identifier(source: &mut io::SourceFlexIterator)
         _ => ast::TokenKind::Identifier,
     };
 
-    let token = ast::Token {
-        kind: kind,
-        value: value,
-        location: location,
-    };
+    let token = ast::Token::new(kind, value, location);
     common::Status {
         result: token,
         error: None,

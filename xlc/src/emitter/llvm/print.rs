@@ -58,8 +58,8 @@ impl<'a> emitter::Emitter<'a> {
     }
 
     fn emit_print_strlit(&mut self, ir_id: &String) {
-        let ir_id = &Self::get_decorated_str_ir_id(Self::get_str_decl_by_ir_id(&self.str_decls,
-                                                                               ir_id));
+        let ir_id =
+            &Self::get_decorated_str_ir_id(Self::get_str_decl_by_ir_id(&self.str_decls, ir_id));
         self.emit_print_str(ir_id);
     }
 

@@ -2,18 +2,19 @@ use ast;
 use cdata;
 
 
-pub fn get_identifier_kind<'a>(identifier: &String,
-                               steps: &'a cdata::Steps<'a>)
-                               -> cdata::StepKind {
+pub fn get_identifier_kind<'a>(
+    identifier: &String,
+    steps: &'a cdata::Steps<'a>,
+) -> cdata::StepKind {
     let var = identifier;
     let kind = steps
         .iter()
         .find(|step| match *step.node.kind {
-                  ast::NodeKind::Assignment { ref identifier, .. } => {
-                      identifier.as_ref().unwrap() == var
-                  }
-                  _ => false,
-              })
+            ast::NodeKind::Assignment { ref identifier, .. } => {
+                identifier.as_ref().unwrap() == var
+            }
+            _ => false,
+        })
         .map(|step| step.kind);
     match kind {
         Some(kind) => kind,

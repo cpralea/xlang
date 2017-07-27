@@ -50,6 +50,7 @@ impl<'a> emitter::Emitter<'a> {
             "-" => self.emit_op_sub(ir_leftid, ir_rightid),
             "*" => self.emit_op_mul(ir_leftid, ir_rightid),
             "/" => self.emit_op_div(ir_leftid, ir_rightid),
+            "!" => self.emit_op_xor(ir_leftid, ir_rightid),
             "||" => self.emit_op_or(ir_leftid, ir_rightid),
             "&&" => self.emit_op_and(ir_leftid, ir_rightid),
             "==" => self.emit_op_eq(&left, ir_leftid, &right, ir_rightid),
@@ -64,57 +65,81 @@ impl<'a> emitter::Emitter<'a> {
 
     fn emit_op_add(&mut self, ir_leftid: String, ir_rightid: String) {
         let ir_tmpid = format!("%{}", Self::get_next_id(&mut self.tmpvar_id));
-        Self::ir(&mut self.ir,
-                 1,
-                 format!("{} = add nsw i64 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str());
+        Self::ir(
+            &mut self.ir,
+            1,
+            format!("{} = add nsw i64 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str(),
+        );
         self.stack.push(operand::Operand::IntLit { value: ir_tmpid });
     }
 
     fn emit_op_sub(&mut self, ir_leftid: String, ir_rightid: String) {
         let ir_tmpid = format!("%{}", Self::get_next_id(&mut self.tmpvar_id));
-        Self::ir(&mut self.ir,
-                 1,
-                 format!("{} = sub nsw i64 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str());
+        Self::ir(
+            &mut self.ir,
+            1,
+            format!("{} = sub nsw i64 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str(),
+        );
         self.stack.push(operand::Operand::IntLit { value: ir_tmpid });
     }
 
     fn emit_op_mul(&mut self, ir_leftid: String, ir_rightid: String) {
         let ir_tmpid = format!("%{}", Self::get_next_id(&mut self.tmpvar_id));
-        Self::ir(&mut self.ir,
-                 1,
-                 format!("{} = mul nsw i64 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str());
+        Self::ir(
+            &mut self.ir,
+            1,
+            format!("{} = mul nsw i64 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str(),
+        );
         self.stack.push(operand::Operand::IntLit { value: ir_tmpid });
     }
 
     fn emit_op_div(&mut self, ir_leftid: String, ir_rightid: String) {
         let ir_tmpid = format!("%{}", Self::get_next_id(&mut self.tmpvar_id));
-        Self::ir(&mut self.ir,
-                 1,
-                 format!("{} = sdiv i64 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str());
+        Self::ir(
+            &mut self.ir,
+            1,
+            format!("{} = sdiv i64 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str(),
+        );
         self.stack.push(operand::Operand::IntLit { value: ir_tmpid });
+    }
+
+    fn emit_op_xor(&mut self, ir_leftid: String, ir_rightid: String) {
+        let ir_tmpid = format!("%{}", Self::get_next_id(&mut self.tmpvar_id));
+        Self::ir(
+            &mut self.ir,
+            1,
+            format!("{} = xor i8 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str(),
+        );
+        self.stack.push(operand::Operand::BoolLit { value: ir_tmpid });
     }
 
     fn emit_op_or(&mut self, ir_leftid: String, ir_rightid: String) {
         let ir_tmpid = format!("%{}", Self::get_next_id(&mut self.tmpvar_id));
-        Self::ir(&mut self.ir,
-                 1,
-                 format!("{} = or i8 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str());
+        Self::ir(
+            &mut self.ir,
+            1,
+            format!("{} = or i8 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str(),
+        );
         self.stack.push(operand::Operand::BoolLit { value: ir_tmpid });
     }
 
     fn emit_op_and(&mut self, ir_leftid: String, ir_rightid: String) {
         let ir_tmpid = format!("%{}", Self::get_next_id(&mut self.tmpvar_id));
-        Self::ir(&mut self.ir,
-                 1,
-                 format!("{} = and i8 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str());
+        Self::ir(
+            &mut self.ir,
+            1,
+            format!("{} = and i8 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str(),
+        );
         self.stack.push(operand::Operand::BoolLit { value: ir_tmpid });
     }
 
-    fn emit_op_eq(&mut self,
-                  left: &operand::Operand,
-                  ir_leftid: String,
-                  _right: &operand::Operand,
-                  ir_rightid: String) {
+    fn emit_op_eq(
+        &mut self,
+        left: &operand::Operand,
+        ir_leftid: String,
+        _right: &operand::Operand,
+        ir_rightid: String,
+    ) {
         match *left {
             operand::Operand::BoolLit { .. } |
             operand::Operand::BoolVar { .. } => self.emit_op_booleq(ir_leftid, ir_rightid),
@@ -124,11 +149,13 @@ impl<'a> emitter::Emitter<'a> {
         }
     }
 
-    fn emit_op_ne(&mut self,
-                  left: &operand::Operand,
-                  ir_leftid: String,
-                  _right: &operand::Operand,
-                  ir_rightid: String) {
+    fn emit_op_ne(
+        &mut self,
+        left: &operand::Operand,
+        ir_leftid: String,
+        _right: &operand::Operand,
+        ir_rightid: String,
+    ) {
         match *left {
             operand::Operand::BoolLit { .. } |
             operand::Operand::BoolVar { .. } => self.emit_op_boolne(ir_leftid, ir_rightid),
@@ -140,72 +167,88 @@ impl<'a> emitter::Emitter<'a> {
 
     fn emit_op_booleq(&mut self, ir_leftid: String, ir_rightid: String) {
         let ir_tmpid = format!("%{}", Self::get_next_id(&mut self.tmpvar_id));
-        Self::ir(&mut self.ir,
-                 1,
-                 format!("{} = icmp eq i8 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str());
+        Self::ir(
+            &mut self.ir,
+            1,
+            format!("{} = icmp eq i8 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str(),
+        );
         let ir_tmpid = self.cast_i1_to_i8(ir_tmpid);
         self.stack.push(operand::Operand::BoolLit { value: ir_tmpid });
     }
 
     fn emit_op_inteq(&mut self, ir_leftid: String, ir_rightid: String) {
         let ir_tmpid = format!("%{}", Self::get_next_id(&mut self.tmpvar_id));
-        Self::ir(&mut self.ir,
-                 1,
-                 format!("{} = icmp eq i64 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str());
+        Self::ir(
+            &mut self.ir,
+            1,
+            format!("{} = icmp eq i64 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str(),
+        );
         let ir_tmpid = self.cast_i1_to_i8(ir_tmpid);
         self.stack.push(operand::Operand::BoolLit { value: ir_tmpid });
     }
 
     fn emit_op_boolne(&mut self, ir_leftid: String, ir_rightid: String) {
         let ir_tmpid = format!("%{}", Self::get_next_id(&mut self.tmpvar_id));
-        Self::ir(&mut self.ir,
-                 1,
-                 format!("{} = icmp ne i8 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str());
+        Self::ir(
+            &mut self.ir,
+            1,
+            format!("{} = icmp ne i8 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str(),
+        );
         let ir_tmpid = self.cast_i1_to_i8(ir_tmpid);
         self.stack.push(operand::Operand::BoolLit { value: ir_tmpid });
     }
 
     fn emit_op_intne(&mut self, ir_leftid: String, ir_rightid: String) {
         let ir_tmpid = format!("%{}", Self::get_next_id(&mut self.tmpvar_id));
-        Self::ir(&mut self.ir,
-                 1,
-                 format!("{} = icmp ne i64 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str());
+        Self::ir(
+            &mut self.ir,
+            1,
+            format!("{} = icmp ne i64 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str(),
+        );
         let ir_tmpid = self.cast_i1_to_i8(ir_tmpid);
         self.stack.push(operand::Operand::BoolLit { value: ir_tmpid });
     }
 
     fn emit_op_lt(&mut self, ir_leftid: String, ir_rightid: String) {
         let ir_tmpid = format!("%{}", Self::get_next_id(&mut self.tmpvar_id));
-        Self::ir(&mut self.ir,
-                 1,
-                 format!("{} = icmp slt i64 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str());
+        Self::ir(
+            &mut self.ir,
+            1,
+            format!("{} = icmp slt i64 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str(),
+        );
         let ir_tmpid = self.cast_i1_to_i8(ir_tmpid);
         self.stack.push(operand::Operand::BoolLit { value: ir_tmpid });
     }
 
     fn emit_op_le(&mut self, ir_leftid: String, ir_rightid: String) {
         let ir_tmpid = format!("%{}", Self::get_next_id(&mut self.tmpvar_id));
-        Self::ir(&mut self.ir,
-                 1,
-                 format!("{} = icmp sle i64 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str());
+        Self::ir(
+            &mut self.ir,
+            1,
+            format!("{} = icmp sle i64 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str(),
+        );
         let ir_tmpid = self.cast_i1_to_i8(ir_tmpid);
         self.stack.push(operand::Operand::BoolLit { value: ir_tmpid });
     }
 
     fn emit_op_gt(&mut self, ir_leftid: String, ir_rightid: String) {
         let ir_tmpid = format!("%{}", Self::get_next_id(&mut self.tmpvar_id));
-        Self::ir(&mut self.ir,
-                 1,
-                 format!("{} = icmp sgt i64 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str());
+        Self::ir(
+            &mut self.ir,
+            1,
+            format!("{} = icmp sgt i64 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str(),
+        );
         let ir_tmpid = self.cast_i1_to_i8(ir_tmpid);
         self.stack.push(operand::Operand::BoolLit { value: ir_tmpid });
     }
 
     fn emit_op_ge(&mut self, ir_leftid: String, ir_rightid: String) {
         let ir_tmpid = format!("%{}", Self::get_next_id(&mut self.tmpvar_id));
-        Self::ir(&mut self.ir,
-                 1,
-                 format!("{} = icmp sge i64 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str());
+        Self::ir(
+            &mut self.ir,
+            1,
+            format!("{} = icmp sge i64 {}, {}", ir_tmpid, ir_leftid, ir_rightid).as_str(),
+        );
         let ir_tmpid = self.cast_i1_to_i8(ir_tmpid);
         self.stack.push(operand::Operand::BoolLit { value: ir_tmpid });
     }
@@ -238,10 +281,9 @@ impl<'a> emitter::Emitter<'a> {
 
     fn push_bollit(&mut self, xl_val: &bool) {
         let ir_val = match *xl_val {
-                true => "1",
-                false => "0",
-            }
-            .to_string();
+            true => "1",
+            false => "0",
+        }.to_string();
         self.stack.push(operand::Operand::BoolLit { value: ir_val });
     }
 

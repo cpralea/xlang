@@ -4,8 +4,9 @@ use ast;
 use super::utils;
 
 
-pub fn parse_unknown<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
-                         -> common::Status<ast::Node<'a>> {
+pub fn parse_unknown<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+) -> common::Status<ast::Node<'a>> {
     let head;
 
     let status = utils::next_token(tokens, None, hashset!{});
@@ -15,10 +16,9 @@ pub fn parse_unknown<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
     head = status.result;
 
     make_unknown(head).error(Some(common::Error {
-                                      location: Some(head.unwrap().location),
-                                      message: format!("Unexpected token '{}'.",
-                                                       head.unwrap().value),
-                                  }))
+        location: Some(head.unwrap().location),
+        message: format!("Unexpected token '{}'.", head.unwrap().value),
+    }))
 }
 
 

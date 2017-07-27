@@ -7,9 +7,10 @@ use cdata;
 use super::utils;
 
 
-pub fn compute_assignment_step_kind<'a>(mut steps: cdata::Steps<'a>,
-                                        pos: usize)
-                                        -> common::Status<cdata::Steps<'a>> {
+pub fn compute_assignment_step_kind<'a>(
+    mut steps: cdata::Steps<'a>,
+    pos: usize,
+) -> common::Status<cdata::Steps<'a>> {
     let mut error = None;
 
     match *steps[pos].node.kind {
@@ -26,9 +27,9 @@ pub fn compute_assignment_step_kind<'a>(mut steps: cdata::Steps<'a>,
                 steps[pos].kind = steps[pos - 1].kind;
             } else {
                 error = Some(common::Error {
-                                 location: Some(steps[pos].node.token.unwrap().location),
-                                 message: format!("Cannot assign {} to {}.", new, old),
-                             });
+                    location: Some(steps[pos].node.token.unwrap().location),
+                    message: format!("Cannot assign {} to {}.", new, old),
+                });
             }
         }
         _ => unreachable!(),

@@ -9,9 +9,11 @@ impl<'a> emitter::Emitter<'a> {
         self.build_var_decls();
         Self::ir(&mut self.ir, 1, "; Variables.");
         for var_decl in self.var_decls.iter() {
-            Self::ir(&mut self.ir,
-                     1,
-                     format!("{} = alloca {}, align 8", var_decl.ir_id, var_decl.ir_type).as_str())
+            Self::ir(
+                &mut self.ir,
+                1,
+                format!("{} = alloca {}, align 8", var_decl.ir_id, var_decl.ir_type).as_str(),
+            )
         }
     }
 }
@@ -26,14 +28,16 @@ impl<'a> emitter::Emitter<'a> {
                     if Self::find_var_decl_by_xl_id(&self.var_decls, xl_id).is_none() {
                         let ir_id = format!("%{}", xl_id);
                         let ir_type = String::from(match step.kind {
-                                                       cdata::StepKind::Bool => "i8",
-                                                       cdata::StepKind::Int => "i64",
-                                                       cdata::StepKind::Str => "i8*",
-                                                       _ => unreachable!(),
-                                                   });
-                        self.var_decls.push(vardecl::VarDecl::from(xl_id)
-                                                .with_id(ir_id)
-                                                .with_type(ir_type));
+                            cdata::StepKind::Bool => "i8",
+                            cdata::StepKind::Int => "i64",
+                            cdata::StepKind::Str => "i8*",
+                            _ => unreachable!(),
+                        });
+                        self.var_decls.push(
+                            vardecl::VarDecl::from(xl_id).with_id(ir_id).with_type(
+                                ir_type,
+                            ),
+                        );
                     }
                 }
             }

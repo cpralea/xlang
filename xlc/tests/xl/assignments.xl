@@ -6,3 +6,7 @@ s = "ok"
 print s
 i = 0
 print i
+ni = -1
+print ni
+nb = !true
+print nb

@@ -7,8 +7,9 @@ use super::statement;
 use super::utils;
 
 
-pub fn parse_assignment<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
-                            -> common::Status<ast::Node<'a>> {
+pub fn parse_assignment<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+) -> common::Status<ast::Node<'a>> {
     let head;
     let (mut identifier, mut expression) = (None, None);
 
@@ -39,20 +40,22 @@ pub fn parse_assignment<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Toke
 }
 
 
-fn parse_assign_operator<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
-                             -> common::Status<Option<&'a ast::Token>> {
+fn parse_assign_operator<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+) -> common::Status<Option<&'a ast::Token>> {
     utils::next_token(tokens, Some("'='"), hashset!{ ast::TokenKind::Assign })
 }
 
 
-fn make_assignment<'a>(token: Option<&'a ast::Token>,
-                       identifier: Option<String>,
-                       expression: Option<ast::Node<'a>>)
-                       -> common::Status<ast::Node<'a>> {
+fn make_assignment<'a>(
+    token: Option<&'a ast::Token>,
+    identifier: Option<String>,
+    expression: Option<ast::Node<'a>>,
+) -> common::Status<ast::Node<'a>> {
     let kind = Box::new(ast::NodeKind::Assignment {
-                            identifier: identifier,
-                            expression: expression,
-                        });
+        identifier: identifier,
+        expression: expression,
+    });
     common::Status {
         result: ast::Node::new(kind, token),
         error: None,

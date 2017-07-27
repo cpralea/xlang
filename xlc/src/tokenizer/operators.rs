@@ -30,6 +30,11 @@ pub fn parse_div(source: &mut io::SourceFlexIterator) -> common::Status<ast::Tok
 }
 
 
+pub fn parse_not(source: &mut io::SourceFlexIterator) -> common::Status<ast::Token> {
+    utils::parse_symbol(source, "!", ast::TokenKind::Not)
+}
+
+
 pub fn parse_or(source: &mut io::SourceFlexIterator) -> common::Status<ast::Token> {
     utils::parse_symbol(source, "||", ast::TokenKind::Or)
 }

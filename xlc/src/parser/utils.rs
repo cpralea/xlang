@@ -4,10 +4,11 @@ use common;
 use ast;
 
 
-pub fn next_token<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
-                      error: Option<&str>,
-                      kinds: collections::HashSet<ast::TokenKind>)
-                      -> common::Status<Option<&'a ast::Token>> {
+pub fn next_token<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+    error: Option<&str>,
+    kinds: collections::HashSet<ast::TokenKind>,
+) -> common::Status<Option<&'a ast::Token>> {
     let mut status = peek_token(tokens, 0, kinds);
 
     if status.error.is_none() {
@@ -16,22 +17,17 @@ pub fn next_token<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
         if let Some(error) = error {
             status.error = match status.result {
                 Some(token) => {
-                    status
-                        .error
-                        .map(|mut e| {
-                                 e.message = format!("Expected {}. Found {}.",
-                                                     error,
-                                                     pretty_token(&token.value));
-                                 e
-                             })
+                    status.error.map(|mut e| {
+                        e.message =
+                            format!("Expected {}. Found {}.", error, pretty_token(&token.value));
+                        e
+                    })
                 }
                 None => {
-                    status
-                        .error
-                        .map(|mut e| {
-                                 e.message = format!("Expected {}. Found End of File.", error);
-                                 e
-                             })
+                    status.error.map(|mut e| {
+                        e.message = format!("Expected {}. Found End of File.", error);
+                        e
+                    })
                 }
             }
         }
@@ -41,10 +37,11 @@ pub fn next_token<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
 }
 
 
-fn peek_token<'a>(tokens: &common::FlexIteratorByRef<'a, ast::Token>,
-                  offset: usize,
-                  kinds: collections::HashSet<ast::TokenKind>)
-                  -> common::Status<Option<&'a ast::Token>> {
+pub fn peek_token<'a>(
+    tokens: &common::FlexIteratorByRef<'a, ast::Token>,
+    offset: usize,
+    kinds: collections::HashSet<ast::TokenKind>,
+) -> common::Status<Option<&'a ast::Token>> {
     let token = tokens.peek(offset);
     let location = token.map(|token| token.location);
     let error = match token {
@@ -52,18 +49,18 @@ fn peek_token<'a>(tokens: &common::FlexIteratorByRef<'a, ast::Token>,
             match kinds.is_empty() {
                 false if !kinds.contains(&token.kind) => {
                     Some(common::Error {
-                             location: location,
-                             message: format!("Unexpected token {}.", pretty_token(&token.value)),
-                         })
+                        location: location,
+                        message: format!("Unexpected token {}.", pretty_token(&token.value)),
+                    })
                 }
                 _ => None,
             }
         }
         None => {
             Some(common::Error {
-                     location: location,
-                     message: format!("Unexpected End of File."),
-                 })
+                location: location,
+                message: format!("Unexpected End of File."),
+            })
         }
     };
 

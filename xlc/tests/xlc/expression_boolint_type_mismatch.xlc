@@ -34,4 +34,4 @@
 [Debug]:     (Node: Print, @(Token: Value: 'print', Print@1,1)): Unk
 print true || 0
            ^
-[Error]: @1,12: Cannot apply '||' to Boolean and Integer.
+[Error]: @1,12: Cannot apply binary '||' to Boolean and Integer.

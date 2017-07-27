@@ -144,7 +144,7 @@ impl<'a> Node<'a> {
 
     fn descend_into_assignment<T>(&'a self, visitor: &mut NodeVisitor<'a, Result = T>) {
         let descend = visitor.should_descend_into_node(self) &&
-                      visitor.should_descend_into_assignment(self);
+            visitor.should_descend_into_assignment(self);
         match *self.kind {
             NodeKind::Assignment { ref expression, .. } => {
                 match *expression {
@@ -158,7 +158,7 @@ impl<'a> Node<'a> {
 
     fn descend_into_expression<T>(&'a self, visitor: &mut NodeVisitor<'a, Result = T>) {
         let descend = visitor.should_descend_into_node(self) &&
-                      visitor.should_descend_into_expression(self);
+            visitor.should_descend_into_expression(self);
         match *self.kind {
             NodeKind::Expression {
                 ref left,
@@ -180,7 +180,7 @@ impl<'a> Node<'a> {
 
     fn descend_into_print<T>(&'a self, visitor: &mut NodeVisitor<'a, Result = T>) {
         let descend = visitor.should_descend_into_node(self) &&
-                      visitor.should_descend_into_print(self);
+            visitor.should_descend_into_print(self);
         match *self.kind {
             NodeKind::Print { ref expression, .. } => {
                 match *expression {
@@ -194,7 +194,7 @@ impl<'a> Node<'a> {
 
     fn descend_into_program<T>(&'a self, visitor: &mut NodeVisitor<'a, Result = T>) {
         let descend = visitor.should_descend_into_node(self) &&
-                      visitor.should_descend_into_program(self);
+            visitor.should_descend_into_program(self);
         match *self.kind {
             NodeKind::Program { ref statements, .. } => {
                 if descend {
@@ -209,6 +209,6 @@ impl<'a> Node<'a> {
 
     fn descend_into_unknown<T>(&'a self, visitor: &mut NodeVisitor<'a, Result = T>) {
         let _descend = visitor.should_descend_into_node(self) &&
-                       visitor.should_descend_into_unknown(self);
+            visitor.should_descend_into_unknown(self);
     }
 }

@@ -11,11 +11,7 @@ pub fn parse_separator(source: &mut io::SourceFlexIterator) -> common::Status<as
     let value = String::from("\\n");
     source.next();
 
-    let token = ast::Token {
-        kind: ast::TokenKind::Separator,
-        value: value,
-        location: location,
-    };
+    let token = ast::Token::new(ast::TokenKind::Separator, value, location);
     common::Status {
         result: token,
         error: None,

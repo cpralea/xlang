@@ -34,6 +34,22 @@
 [Debug]:   (Token: Value: 'print', Print@8,1)
 [Debug]:   (Token: Value: 'i', Identifier@8,7)
 [Debug]:   (Token: Value: '\n', Separator@8,8)
+[Debug]:   (Token: Value: 'ni', Identifier@9,1)
+[Debug]:   (Token: Value: '=', Assign@9,4)
+[Debug]:   (Token: Value: '-', Sub@9,6)
+[Debug]:   (Token: Value: '1', Integer@9,7)
+[Debug]:   (Token: Value: '\n', Separator@9,8)
+[Debug]:   (Token: Value: 'print', Print@10,1)
+[Debug]:   (Token: Value: 'ni', Identifier@10,7)
+[Debug]:   (Token: Value: '\n', Separator@10,9)
+[Debug]:   (Token: Value: 'nb', Identifier@11,1)
+[Debug]:   (Token: Value: '=', Assign@11,4)
+[Debug]:   (Token: Value: '!', Not@11,6)
+[Debug]:   (Token: Value: 'true', Boolean@11,7)
+[Debug]:   (Token: Value: '\n', Separator@11,11)
+[Debug]:   (Token: Value: 'print', Print@12,1)
+[Debug]:   (Token: Value: 'nb', Identifier@12,7)
+[Debug]:   (Token: Value: '\n', Separator@12,9)
 [Debug]: Parsed program:
 [Debug]:   (Node: Program, @N/A
 [Debug]:     Statements:
@@ -72,7 +88,37 @@
 [Debug]:       (Node: Print, @(Token: Value: 'print', Print@8,1)
 [Debug]:         Expression:
 [Debug]:           (Node: Expression, @(Token: Value: 'i', Identifier@8,7)
-[Debug]:             Identifier: i)))
+[Debug]:             Identifier: i))
+[Debug]:       (Node: Assignment, @(Token: Value: 'ni', Identifier@9,1)
+[Debug]:         Identifier: ni
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '-', Sub@9,6)
+[Debug]:             Operator: -
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @N/A
+[Debug]:                 Integer: 0)
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: '1', Integer@9,7)
+[Debug]:                 Integer: 1)))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@10,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: 'ni', Identifier@10,7)
+[Debug]:             Identifier: ni))
+[Debug]:       (Node: Assignment, @(Token: Value: 'nb', Identifier@11,1)
+[Debug]:         Identifier: nb
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: '!', Not@11,6)
+[Debug]:             Operator: !
+[Debug]:             Left:
+[Debug]:               (Node: Expression, @N/A
+[Debug]:                 Boolean: true)
+[Debug]:             Right:
+[Debug]:               (Node: Expression, @(Token: Value: 'true', Boolean@11,7)
+[Debug]:                 Boolean: true)))
+[Debug]:       (Node: Print, @(Token: Value: 'print', Print@12,1)
+[Debug]:         Expression:
+[Debug]:           (Node: Expression, @(Token: Value: 'nb', Identifier@12,7)
+[Debug]:             Identifier: nb)))
 [Debug]: Compiler data:
 [Debug]:   Parent:
 [Debug]:     (Node: Program, @N/A)
@@ -93,6 +139,18 @@
 [Debug]:     (Node: Assignment, @(Token: Value: 'i', Identifier@7,1)): Int
 [Debug]:     (Node: Expression, @(Token: Value: 'i', Identifier@8,7)): Int
 [Debug]:     (Node: Print, @(Token: Value: 'print', Print@8,1)): Nil
+[Debug]:     (Node: Expression, @N/A): Int
+[Debug]:     (Node: Expression, @(Token: Value: '1', Integer@9,7)): Int
+[Debug]:     (Node: Expression, @(Token: Value: '-', Sub@9,6)): Int
+[Debug]:     (Node: Assignment, @(Token: Value: 'ni', Identifier@9,1)): Int
+[Debug]:     (Node: Expression, @(Token: Value: 'ni', Identifier@10,7)): Int
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@10,1)): Nil
+[Debug]:     (Node: Expression, @N/A): Bool
+[Debug]:     (Node: Expression, @(Token: Value: 'true', Boolean@11,7)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: '!', Not@11,6)): Bool
+[Debug]:     (Node: Assignment, @(Token: Value: 'nb', Identifier@11,1)): Bool
+[Debug]:     (Node: Expression, @(Token: Value: 'nb', Identifier@12,7)): Bool
+[Debug]:     (Node: Print, @(Token: Value: 'print', Print@12,1)): Nil
 [Debug]: Code:
 [Debug]:   ; String literals.
 [Debug]:   @0 = private unnamed_addr constant [3 x i8] c"ok\00", align 1
@@ -104,6 +162,8 @@
 [Debug]:     %b = alloca i8, align 8
 [Debug]:     %s = alloca i8*, align 8
 [Debug]:     %i = alloca i64, align 8
+[Debug]:     %ni = alloca i64, align 8
+[Debug]:     %nb = alloca i8, align 8
 [Debug]:     ; Statements.
 [Debug]:     store i8 1, i8* %b, align 1
 [Debug]:     %0 = load i8, i8* %b, align 1
@@ -117,6 +177,14 @@
 [Debug]:     store i64 0, i64* %i, align 8
 [Debug]:     %3 = load i64, i64* %i, align 8
 [Debug]:     call void @__xlrt_print_int(i64 %3)
+[Debug]:     %4 = sub nsw i64 0, 1
+[Debug]:     store i64 %4, i64* %ni, align 8
+[Debug]:     %5 = load i64, i64* %ni, align 8
+[Debug]:     call void @__xlrt_print_int(i64 %5)
+[Debug]:     %6 = xor i8 1, 1
+[Debug]:     store i8 %6, i8* %nb, align 1
+[Debug]:     %7 = load i8, i8* %nb, align 1
+[Debug]:     call void @__xlrt_print_bool(i8 %7)
 [Debug]:     ; Return.
 [Debug]:     ret i32 0
 [Debug]:   }

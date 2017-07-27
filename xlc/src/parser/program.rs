@@ -6,8 +6,9 @@ use super::print;
 use super::unknown;
 
 
-pub fn parse_program<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
-                         -> common::Status<ast::Node<'a>> {
+pub fn parse_program<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+) -> common::Status<ast::Node<'a>> {
     let (mut statements,) = (ast::Nodes::new(),);
 
     while let Some(token) = tokens.peek(0) {
@@ -41,9 +42,10 @@ pub fn parse_program<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
 }
 
 
-fn make_program<'a>(token: Option<&'a ast::Token>,
-                    statements: ast::Nodes<'a>)
-                    -> common::Status<ast::Node<'a>> {
+fn make_program<'a>(
+    token: Option<&'a ast::Token>,
+    statements: ast::Nodes<'a>,
+) -> common::Status<ast::Node<'a>> {
     let program = Box::new(ast::NodeKind::Program { statements: statements });
     common::Status {
         result: ast::Node::new(program, token),

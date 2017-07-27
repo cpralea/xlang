@@ -34,4 +34,4 @@
 [Debug]:     (Node: Print, @(Token: Value: 'print', Print@1,1)): Unk
 print 2 * "ok"
         ^
-[Error]: @1,9: Cannot apply '*' to Integer and String.
+[Error]: @1,9: Cannot apply binary '*' to Integer and String.

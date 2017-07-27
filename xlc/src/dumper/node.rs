@@ -67,9 +67,11 @@ impl<'a> ast::NodeVisitor<'a> for NodeDumper {
     }
 
     fn begin_visit_node(&mut self, node: &'a ast::Node<'a>) {
-        Self::ipushln(&mut self.status.result,
-                      dump_generic_node_header(node).as_str(),
-                      self.level);
+        Self::ipushln(
+            &mut self.status.result,
+            dump_generic_node_header(node).as_str(),
+            self.level,
+        );
         self.level += 1;
     }
 

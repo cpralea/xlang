@@ -5,38 +5,44 @@ use super::parentheses;
 use super::utils;
 
 
-pub fn parse_expression<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
-                            -> common::Status<ast::Node<'a>> {
+pub fn parse_expression<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+) -> common::Status<ast::Node<'a>> {
     parse_expression_l4(tokens)
 }
 
 
-fn parse_expression_l4<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
-                           -> common::Status<ast::Node<'a>> {
+fn parse_expression_l4<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+) -> common::Status<ast::Node<'a>> {
     parse_curlvlexp(tokens, parse_expression_l3, parse_expression_l4_operator)
 }
 
 
-fn parse_expression_l3<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
-                           -> common::Status<ast::Node<'a>> {
+fn parse_expression_l3<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+) -> common::Status<ast::Node<'a>> {
     parse_curlvlexp(tokens, parse_expression_l2, parse_expression_l3_operator)
 }
 
 
-fn parse_expression_l2<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
-                           -> common::Status<ast::Node<'a>> {
+fn parse_expression_l2<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+) -> common::Status<ast::Node<'a>> {
     parse_curlvlexp(tokens, parse_expression_l1, parse_expression_l2_operator)
 }
 
 
-fn parse_expression_l1<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
-                           -> common::Status<ast::Node<'a>> {
+fn parse_expression_l1<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+) -> common::Status<ast::Node<'a>> {
     parse_curlvlexp(tokens, parse_expression_l0, parse_expression_l1_operator)
 }
 
 
-fn parse_expression_l0<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
-                           -> common::Status<ast::Node<'a>> {
+fn parse_expression_l0<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+) -> common::Status<ast::Node<'a>> {
     match tokens.peek(0) {
         Some(token) if token.kind == ast::TokenKind::LParen => {
             parse_expression_inside_parens(tokens)
@@ -50,10 +56,11 @@ type PrevLvlExpParser<'a> = fn(&mut common::FlexIteratorByRef<'a, ast::Token>)
                                -> common::Status<ast::Node<'a>>;
 type CurLvlOpParser<'a> = fn(&mut common::FlexIteratorByRef<'a, ast::Token>)
                              -> common::Status<Option<&'a ast::Token>>;
-fn parse_curlvlexp<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
-                       parse_prevlvlexp: PrevLvlExpParser<'a>,
-                       parse_curlvlop: CurLvlOpParser<'a>)
-                       -> common::Status<ast::Node<'a>> {
+fn parse_curlvlexp<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+    parse_prevlvlexp: PrevLvlExpParser<'a>,
+    parse_curlvlop: CurLvlOpParser<'a>,
+) -> common::Status<ast::Node<'a>> {
     let head;
     let (operator, left, right);
 
@@ -66,9 +73,9 @@ fn parse_curlvlexp<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
     let status = parse_curlvlop(tokens);
     if status.error.is_some() {
         return common::Status {
-                   result: left.unwrap(),
-                   error: None,
-               };
+            result: left.unwrap(),
+            error: None,
+        };
     }
     head = status.result;
     operator = Some(status.result.unwrap().value.clone());
@@ -83,8 +90,9 @@ fn parse_curlvlexp<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
 }
 
 
-fn parse_expression_inside_parens<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
-                                      -> common::Status<ast::Node<'a>> {
+fn parse_expression_inside_parens<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+) -> common::Status<ast::Node<'a>> {
     let status = parentheses::parse_lparen(tokens);
     assert!(status.error.is_none());
 
@@ -96,31 +104,128 @@ fn parse_expression_inside_parens<'a>(tokens: &mut common::FlexIteratorByRef<'a,
     let status = parentheses::parse_rparen(tokens);
     if status.error.is_some() {
         return common::Status {
-                   result: noparen_status.result,
-                   error: status.error,
-               };
+            result: noparen_status.result,
+            error: status.error,
+        };
     }
 
     noparen_status
 }
 
 
-fn parse_expression_l0_proper<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
-                                  -> common::Status<ast::Node<'a>> {
+fn parse_expression_l0_proper<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+) -> common::Status<ast::Node<'a>> {
+    match !is_unary_l0_expression(tokens) {
+        true => parse_simple_l0_expression(tokens),
+        false => {
+            let (node, status) =
+                (parse_partial_unary_l0_expression(tokens), parse_expression_l0(tokens));
+            assert!(status.error.is_none());
+            let (operator, left, right) = (
+                match *node.kind {
+                    ast::NodeKind::Expression { ref operator, .. } => Some(
+                        operator
+                            .as_ref()
+                            .unwrap()
+                            .clone(),
+                    ),
+                    _ => unreachable!(),
+                },
+                match *node.kind {
+                    ast::NodeKind::Expression { left, .. } => left,
+                    _ => unreachable!(),
+                },
+                Some(status.result),
+            );
+            make_expression(node.token, None, None, None, None, operator, left, right)
+        }
+    }
+}
+
+
+fn is_unary_l0_expression<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>) -> bool {
+    if let Some(token) = utils::peek_token(tokens, 0, hashset!{}).result {
+        match token.kind {
+            ast::TokenKind::Sub => {
+                if let Some(token) = utils::peek_token(tokens, 1, hashset!{}).result {
+                    match token.kind {
+                        ast::TokenKind::Identifier |
+                        ast::TokenKind::Integer |
+                        ast::TokenKind::LParen => return true,
+                        _ => {}
+                    }
+                }
+            }
+            ast::TokenKind::Not => {
+                if let Some(token) = utils::peek_token(tokens, 1, hashset!{}).result {
+                    match token.kind {
+                        ast::TokenKind::Identifier |
+                        ast::TokenKind::Boolean |
+                        ast::TokenKind::LParen => return true,
+                        _ => {}
+                    }
+                }
+            }
+            _ => {}
+        }
+    }
+    return false;
+}
+
+
+fn parse_partial_unary_l0_expression<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+) -> ast::Node<'a> {
+    let head;
+    let (operator, left);
+
+    let status = utils::next_token(
+        tokens,
+        Some("'-' or '!'"),
+        hashset!{
+            ast::TokenKind::Sub,
+            ast::TokenKind::Not },
+    );
+    assert!(status.error.is_none());
+    head = status.result;
+
+    match status.result.unwrap().value.as_str() {
+        "-" => {
+            let integer = Some(0);
+            operator = Some(String::from("-"));
+            left = Some(make_expression(None, None, None, integer, None, None, None, None).result);
+        }
+        "!" => {
+            let boolean = Some(true);
+            operator = Some(String::from("!"));
+            left = Some(make_expression(None, boolean, None, None, None, None, None, None).result);
+        }
+        _ => unreachable!(),
+    };
+
+    make_expression(head, None, None, None, None, operator, left, None).result
+}
+
+
+fn parse_simple_l0_expression<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+) -> common::Status<ast::Node<'a>> {
     let head;
     let (mut boolean, mut identifier, mut integer, mut string) = (None, None, None, None);
 
     let status = parse_expression_l0_operand(tokens);
     if status.error.is_some() {
-        return make_expression(status.result,
-                               boolean,
-                               identifier,
-                               integer,
-                               string,
-                               None,
-                               None,
-                               None)
-                       .error(status.error);
+        return make_expression(
+            status.result,
+            boolean,
+            identifier,
+            integer,
+            string,
+            None,
+            None,
+            None,
+        ).error(status.error);
     }
     head = status.result;
     match status.result.unwrap().kind {
@@ -143,72 +248,94 @@ fn parse_expression_l0_proper<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast
 }
 
 
-fn parse_expression_l0_operand<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
-                                   -> common::Status<Option<&'a ast::Token>> {
-    utils::next_token(tokens,
-                      Some("operand"),
-                      hashset!{
-                          ast::TokenKind::Identifier,
-                          ast::TokenKind::Boolean,
-                          ast::TokenKind::Integer,
-                          ast::TokenKind::String })
+fn parse_expression_l0_operand<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+) -> common::Status<Option<&'a ast::Token>> {
+    utils::next_token(
+        tokens,
+        Some("operand"),
+        hashset!{
+            ast::TokenKind::Identifier,
+            ast::TokenKind::Boolean,
+            ast::TokenKind::Integer,
+            ast::TokenKind::String },
+    )
 }
 
 
-fn parse_expression_l1_operator<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
-                                    -> common::Status<Option<&'a ast::Token>> {
-    utils::next_token(tokens,
-                      Some("'*', '/' or '&&'"),
-                      hashset!{ ast::TokenKind::Mul, ast::TokenKind::Div, ast::TokenKind::And })
+fn parse_expression_l1_operator<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+) -> common::Status<Option<&'a ast::Token>> {
+    utils::next_token(
+        tokens,
+        Some("'*', '/' or '&&'"),
+        hashset!{
+            ast::TokenKind::Mul,
+            ast::TokenKind::Div,
+            ast::TokenKind::And },
+    )
 }
 
 
-fn parse_expression_l2_operator<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
-                                    -> common::Status<Option<&'a ast::Token>> {
-    utils::next_token(tokens,
-                      Some("'+', '-' or '||'"),
-                      hashset!{ ast::TokenKind::Add, ast::TokenKind::Sub, ast::TokenKind::Or })
+fn parse_expression_l2_operator<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+) -> common::Status<Option<&'a ast::Token>> {
+    utils::next_token(
+        tokens,
+        Some("'+', '-' or '||'"),
+        hashset!{
+            ast::TokenKind::Add,
+            ast::TokenKind::Sub,
+            ast::TokenKind::Or },
+    )
 }
 
 
-fn parse_expression_l3_operator<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
-                                    -> common::Status<Option<&'a ast::Token>> {
-    utils::next_token(tokens,
-                      Some("'<', '<=', '>' or '>='"),
-                      hashset!{
-                          ast::TokenKind::Lt,
-                          ast::TokenKind::Le,
-                          ast::TokenKind::Gt,
-                          ast::TokenKind::Ge })
+fn parse_expression_l3_operator<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+) -> common::Status<Option<&'a ast::Token>> {
+    utils::next_token(
+        tokens,
+        Some("'<', '<=', '>' or '>='"),
+        hashset!{
+            ast::TokenKind::Lt,
+            ast::TokenKind::Le,
+            ast::TokenKind::Gt,
+            ast::TokenKind::Ge },
+    )
 }
 
 
-fn parse_expression_l4_operator<'a>(tokens: &mut common::FlexIteratorByRef<'a, ast::Token>)
-                                    -> common::Status<Option<&'a ast::Token>> {
-    utils::next_token(tokens,
-                      Some("'==' or '!='"),
-                      hashset!{ ast::TokenKind::Eq, ast::TokenKind::Ne })
+fn parse_expression_l4_operator<'a>(
+    tokens: &mut common::FlexIteratorByRef<'a, ast::Token>,
+) -> common::Status<Option<&'a ast::Token>> {
+    utils::next_token(
+        tokens,
+        Some("'==' or '!='"),
+        hashset!{ ast::TokenKind::Eq, ast::TokenKind::Ne },
+    )
 }
 
 
-fn make_expression<'a>(token: Option<&'a ast::Token>,
-                       boolean: Option<bool>,
-                       identifier: Option<String>,
-                       integer: Option<i64>,
-                       string: Option<String>,
-                       operator: Option<String>,
-                       left: Option<ast::Node<'a>>,
-                       right: Option<ast::Node<'a>>)
-                       -> common::Status<ast::Node<'a>> {
+fn make_expression<'a>(
+    token: Option<&'a ast::Token>,
+    boolean: Option<bool>,
+    identifier: Option<String>,
+    integer: Option<i64>,
+    string: Option<String>,
+    operator: Option<String>,
+    left: Option<ast::Node<'a>>,
+    right: Option<ast::Node<'a>>,
+) -> common::Status<ast::Node<'a>> {
     let kind = Box::new(ast::NodeKind::Expression {
-                            boolean: boolean,
-                            identifier: identifier,
-                            integer: integer,
-                            string: string,
-                            operator: operator,
-                            left: left,
-                            right: right,
-                        });
+        boolean: boolean,
+        identifier: identifier,
+        integer: integer,
+        string: string,
+        operator: operator,
+        left: left,
+        right: right,
+    });
     common::Status {
         result: ast::Node::new(kind, token),
         error: None,
